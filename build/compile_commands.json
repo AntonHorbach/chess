@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/main.cpp.o -c /home/anton/Code/C++/chess/src/main.cpp",
+  "file": "/home/anton/Code/C++/chess/src/main.cpp"
+}
+]

@@ -1,0 +1,1 @@
+/usr/bin/clang++-7  -g  -rdynamic CMakeFiles/chess.dir/src/main.cpp.o  -o chess -lSDL2 
