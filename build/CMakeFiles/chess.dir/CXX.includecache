@@ -6,9 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/anton/Code/C++/chess/src/main.cpp
-iostream
--
+/home/anton/Code/C++/chess/src/game/game.cpp
+game.h
+/home/anton/Code/C++/chess/src/game/game.h
+
+/home/anton/Code/C++/chess/src/game/game.h
 SDL2/SDL.h
+-
+iostream
 -
 
