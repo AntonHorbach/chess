@@ -520,6 +520,33 @@ ExperimentalBuild/fast:
 	$(MAKE) -f CMakeFiles/ExperimentalBuild.dir/build.make CMakeFiles/ExperimentalBuild.dir/build
 .PHONY : ExperimentalBuild/fast
 
+src/game/field.o: src/game/field.cpp.o
+
+.PHONY : src/game/field.o
+
+# target to build an object file
+src/game/field.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/field.cpp.o
+.PHONY : src/game/field.cpp.o
+
+src/game/field.i: src/game/field.cpp.i
+
+.PHONY : src/game/field.i
+
+# target to preprocess a source file
+src/game/field.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/field.cpp.i
+.PHONY : src/game/field.cpp.i
+
+src/game/field.s: src/game/field.cpp.s
+
+.PHONY : src/game/field.s
+
+# target to generate assembly for a file
+src/game/field.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/field.cpp.s
+.PHONY : src/game/field.cpp.s
+
 src/game/game.o: src/game/game.cpp.o
 
 .PHONY : src/game/game.o
@@ -614,6 +641,9 @@ help:
 	@echo "... ContinuousTest"
 	@echo "... ContinuousUpdate"
 	@echo "... ExperimentalBuild"
+	@echo "... src/game/field.o"
+	@echo "... src/game/field.i"
+	@echo "... src/game/field.s"
 	@echo "... src/game/game.o"
 	@echo "... src/game/game.i"
 	@echo "... src/game/game.s"

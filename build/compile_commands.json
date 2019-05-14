@@ -8,5 +8,10 @@
   "directory": "/home/anton/Code/C++/chess/build",
   "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/game.cpp.o -c /home/anton/Code/C++/chess/src/game/game.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/game.cpp"
+},
+{
+  "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/field.cpp.o -c /home/anton/Code/C++/chess/src/game/field.cpp",
+  "file": "/home/anton/Code/C++/chess/src/game/field.cpp"
 }
 ]

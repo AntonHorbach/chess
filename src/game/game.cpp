@@ -3,21 +3,18 @@
 Game::Game(): window(nullptr), renderer(nullptr)
 {}
 
-int Game::init(){
+bool Game::init(char* title, int x, int y, int width, int height, bool fullscrean) {
+    Uint32 flags = fullscrean ? (SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN) : SDL_WINDOW_SHOWN;
+
     if(SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         std::cout << "Bad sdl init: " << SDL_GetError() << '\n';
-        return 1;
+        return false;
     }
 
-    if(SDL_GetDisplayMode(0, 0, &mode) != 0) {
-        std::cout << "Problems with diplay mode\n";
-        return 1;
-    }
-
-    window = SDL_CreateWindow("Chess", 300, 150, mode.w, mode.h, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow(title, x, y, width, height, flags);
     if(window == nullptr) {
         std::cout << "The window has not been created: " << SDL_GetError() << '\n';
-        return 1;
+        return false;
     }
 
     renderer = SDL_CreateRenderer(window, -1, 
@@ -25,23 +22,57 @@ int Game::init(){
     );
     if(renderer == nullptr) {
         std::cout << "Renderer has not been created: " << SDL_GetError() << '\n';
-        return 1;
+        return false;
     }
 
-    return 0;
+    if(!field.init(renderer)) {
+        return false;
+    }
+
+    isRunning = true;
+
+    return true;
+}
+
+void Game::handleEvents() {
+    SDL_Event event;
+
+    SDL_PollEvent(&event);
+
+    switch(event.type) {
+        case SDL_EventType::SDL_QUIT:
+            isRunning = false;
+            break;
+        case SDL_EventType::SDL_MOUSEBUTTONDOWN:
+            field.handleEvents(&event);
+            break;
+        case SDL_EventType::SDL_MOUSEBUTTONUP:
+            field.handleEvents(&event);
+            break;
+        default:
+            break;
+    }
+}
+
+void Game::update() {
+    field.update();
+}
+
+void Game::render() {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderClear(renderer);
+
+    field.render(renderer);
+
+    SDL_RenderPresent(renderer);
 }
 
 int Game::exec() {
-    if(init() != 0) {
-        return 1;
+    while(isRunning) {
+        handleEvents();
+        update();
+        render();
     }
-
-    std::cout << "ALL RIGHT!!!\n";
-/*
-    while(true) {
-        //event loop
-    }
-    */
 
    return 0;
 }
@@ -49,4 +80,5 @@ int Game::exec() {
 Game::~Game() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    SDL_Quit();
 }

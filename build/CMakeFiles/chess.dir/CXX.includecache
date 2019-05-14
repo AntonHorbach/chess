@@ -6,12 +6,12 @@
 
 #IncludeRegexTransform: 
 
-/home/anton/Code/C++/chess/src/game/game.cpp
-game.h
-/home/anton/Code/C++/chess/src/game/game.h
+/home/anton/Code/C++/chess/src/game/field.cpp
+filed.h
+/home/anton/Code/C++/chess/src/game/filed.h
 
-/home/anton/Code/C++/chess/src/game/game.h
-SDL2/SDL.h
+/home/anton/Code/C++/chess/src/game/filed.h
+SDL2/SDL_image.h
 -
 iostream
 -

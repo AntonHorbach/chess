@@ -4,8 +4,8 @@ project(chess VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(chess src/main.cpp src/game/game.cpp)
-target_link_libraries(chess SDL2)
+add_executable(chess src/main.cpp src/game/game.cpp src/game/field.cpp)
+target_link_libraries(chess SDL2 SDL2_image)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
