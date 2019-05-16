@@ -1,5 +1,13 @@
+#ifndef FIELD
+#define FIELD
+
 #include <SDL2/SDL_image.h>
 #include <iostream>
+
+#include "TextureManager.h"
+
+#define BLACK_SQUARE 16
+#define WHITE_SQUARE 17
 
 const uint8_t SIZE = 8;
 
@@ -21,3 +29,5 @@ public:
     void update();
     void render(SDL_Renderer* renderer);
 };
+
+#endif

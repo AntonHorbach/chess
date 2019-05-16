@@ -2,6 +2,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/chess.dir/src/main.cpp.o"
   "CMakeFiles/chess.dir/src/game/game.cpp.o"
   "CMakeFiles/chess.dir/src/game/field.cpp.o"
+  "CMakeFiles/chess.dir/src/game/TextureManager.cpp.o"
+  "CMakeFiles/chess.dir/src/game/figure.cpp.o"
+  "CMakeFiles/chess.dir/src/game/player.cpp.o"
   "chess.pdb"
   "chess"
 )

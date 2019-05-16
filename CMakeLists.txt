@@ -4,7 +4,10 @@ project(chess VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(chess src/main.cpp src/game/game.cpp src/game/field.cpp)
+add_executable(chess src/main.cpp src/game/game.cpp src/game/field.cpp
+                src/game/TextureManager.cpp src/game/figure.cpp
+                src/game/player.cpp)
+                
 target_link_libraries(chess SDL2 SDL2_image)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

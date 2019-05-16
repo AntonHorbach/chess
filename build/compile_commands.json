@@ -13,5 +13,20 @@
   "directory": "/home/anton/Code/C++/chess/build",
   "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/field.cpp.o -c /home/anton/Code/C++/chess/src/game/field.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/field.cpp"
+},
+{
+  "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/TextureManager.cpp.o -c /home/anton/Code/C++/chess/src/game/TextureManager.cpp",
+  "file": "/home/anton/Code/C++/chess/src/game/TextureManager.cpp"
+},
+{
+  "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/figure.cpp.o -c /home/anton/Code/C++/chess/src/game/figure.cpp",
+  "file": "/home/anton/Code/C++/chess/src/game/figure.cpp"
+},
+{
+  "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/player.cpp.o -c /home/anton/Code/C++/chess/src/game/player.cpp",
+  "file": "/home/anton/Code/C++/chess/src/game/player.cpp"
 }
 ]

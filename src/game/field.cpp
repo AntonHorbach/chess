@@ -1,22 +1,18 @@
-#include "filed.h"
+#include "field.h"
 
-Field::Field(): white_square(nullptr), black_square(nullptr)
+Field::Field()
+    : white_square(nullptr), black_square(nullptr)
 {
     for(size_t i = 0; i < SIZE; ++i){
         for(size_t j = 0; j < SIZE; ++j){
-            field[i][j] = (i + j)%2 == 0 ? 0 : 1;
+            field[i][j] = (i + j)%2 == 0 ? WHITE_SQUARE : BLACK_SQUARE;
         }
     }
 }
 
 bool Field::init(SDL_Renderer* renderer) {
-    SDL_Surface* surface = IMG_Load("./assets/white_square.png");
-    white_square = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
-
-    surface = IMG_Load("./assets/black_square.png");
-    black_square = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
+    white_square = TextureManager::loadTexture(renderer, "./assets/white_square.png");
+    black_square = TextureManager::loadTexture(renderer, "./assets/black_square.png");
 
     if(white_square == nullptr || black_square == nullptr) {
         std::cout << "Can't load textures: " << SDL_GetError() << std::endl;
@@ -43,7 +39,17 @@ void Field::render(SDL_Renderer* renderer) {
         square_dstrect.x = 0;
 
         for(size_t j = 0; j < SIZE; ++j) {
-            SDL_Texture* cur_texture = (field[i][j] == 0 ? white_square : black_square);
+            SDL_Texture* cur_texture = nullptr;
+
+            switch(field[i][j]) {
+            case WHITE_SQUARE:
+                cur_texture = white_square;
+                break;
+            case BLACK_SQUARE:
+                cur_texture = black_square;
+                break;
+            }
+
             SDL_RenderCopy(renderer, cur_texture, &square_srcrect, &square_dstrect);
 
             square_dstrect.x += square_dstrect.w;

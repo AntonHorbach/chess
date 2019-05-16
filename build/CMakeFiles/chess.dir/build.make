@@ -96,11 +96,53 @@ CMakeFiles/chess.dir/src/game/field.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chess.dir/src/game/field.cpp.s"
 	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/anton/Code/C++/chess/src/game/field.cpp -o CMakeFiles/chess.dir/src/game/field.cpp.s
 
+CMakeFiles/chess.dir/src/game/TextureManager.cpp.o: CMakeFiles/chess.dir/flags.make
+CMakeFiles/chess.dir/src/game/TextureManager.cpp.o: ../src/game/TextureManager.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/anton/Code/C++/chess/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/chess.dir/src/game/TextureManager.cpp.o"
+	/usr/bin/clang++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chess.dir/src/game/TextureManager.cpp.o -c /home/anton/Code/C++/chess/src/game/TextureManager.cpp
+
+CMakeFiles/chess.dir/src/game/TextureManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chess.dir/src/game/TextureManager.cpp.i"
+	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/anton/Code/C++/chess/src/game/TextureManager.cpp > CMakeFiles/chess.dir/src/game/TextureManager.cpp.i
+
+CMakeFiles/chess.dir/src/game/TextureManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chess.dir/src/game/TextureManager.cpp.s"
+	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/anton/Code/C++/chess/src/game/TextureManager.cpp -o CMakeFiles/chess.dir/src/game/TextureManager.cpp.s
+
+CMakeFiles/chess.dir/src/game/figure.cpp.o: CMakeFiles/chess.dir/flags.make
+CMakeFiles/chess.dir/src/game/figure.cpp.o: ../src/game/figure.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/anton/Code/C++/chess/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/chess.dir/src/game/figure.cpp.o"
+	/usr/bin/clang++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chess.dir/src/game/figure.cpp.o -c /home/anton/Code/C++/chess/src/game/figure.cpp
+
+CMakeFiles/chess.dir/src/game/figure.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chess.dir/src/game/figure.cpp.i"
+	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/anton/Code/C++/chess/src/game/figure.cpp > CMakeFiles/chess.dir/src/game/figure.cpp.i
+
+CMakeFiles/chess.dir/src/game/figure.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chess.dir/src/game/figure.cpp.s"
+	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/anton/Code/C++/chess/src/game/figure.cpp -o CMakeFiles/chess.dir/src/game/figure.cpp.s
+
+CMakeFiles/chess.dir/src/game/player.cpp.o: CMakeFiles/chess.dir/flags.make
+CMakeFiles/chess.dir/src/game/player.cpp.o: ../src/game/player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/anton/Code/C++/chess/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/chess.dir/src/game/player.cpp.o"
+	/usr/bin/clang++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/chess.dir/src/game/player.cpp.o -c /home/anton/Code/C++/chess/src/game/player.cpp
+
+CMakeFiles/chess.dir/src/game/player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chess.dir/src/game/player.cpp.i"
+	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/anton/Code/C++/chess/src/game/player.cpp > CMakeFiles/chess.dir/src/game/player.cpp.i
+
+CMakeFiles/chess.dir/src/game/player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chess.dir/src/game/player.cpp.s"
+	/usr/bin/clang++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/anton/Code/C++/chess/src/game/player.cpp -o CMakeFiles/chess.dir/src/game/player.cpp.s
+
 # Object files for target chess
 chess_OBJECTS = \
 "CMakeFiles/chess.dir/src/main.cpp.o" \
 "CMakeFiles/chess.dir/src/game/game.cpp.o" \
-"CMakeFiles/chess.dir/src/game/field.cpp.o"
+"CMakeFiles/chess.dir/src/game/field.cpp.o" \
+"CMakeFiles/chess.dir/src/game/TextureManager.cpp.o" \
+"CMakeFiles/chess.dir/src/game/figure.cpp.o" \
+"CMakeFiles/chess.dir/src/game/player.cpp.o"
 
 # External object files for target chess
 chess_EXTERNAL_OBJECTS =
@@ -108,9 +150,12 @@ chess_EXTERNAL_OBJECTS =
 chess: CMakeFiles/chess.dir/src/main.cpp.o
 chess: CMakeFiles/chess.dir/src/game/game.cpp.o
 chess: CMakeFiles/chess.dir/src/game/field.cpp.o
+chess: CMakeFiles/chess.dir/src/game/TextureManager.cpp.o
+chess: CMakeFiles/chess.dir/src/game/figure.cpp.o
+chess: CMakeFiles/chess.dir/src/game/player.cpp.o
 chess: CMakeFiles/chess.dir/build.make
 chess: CMakeFiles/chess.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/anton/Code/C++/chess/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable chess"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/anton/Code/C++/chess/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable chess"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chess.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

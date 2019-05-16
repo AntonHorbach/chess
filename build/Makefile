@@ -520,6 +520,33 @@ ExperimentalBuild/fast:
 	$(MAKE) -f CMakeFiles/ExperimentalBuild.dir/build.make CMakeFiles/ExperimentalBuild.dir/build
 .PHONY : ExperimentalBuild/fast
 
+src/game/TextureManager.o: src/game/TextureManager.cpp.o
+
+.PHONY : src/game/TextureManager.o
+
+# target to build an object file
+src/game/TextureManager.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/TextureManager.cpp.o
+.PHONY : src/game/TextureManager.cpp.o
+
+src/game/TextureManager.i: src/game/TextureManager.cpp.i
+
+.PHONY : src/game/TextureManager.i
+
+# target to preprocess a source file
+src/game/TextureManager.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/TextureManager.cpp.i
+.PHONY : src/game/TextureManager.cpp.i
+
+src/game/TextureManager.s: src/game/TextureManager.cpp.s
+
+.PHONY : src/game/TextureManager.s
+
+# target to generate assembly for a file
+src/game/TextureManager.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/TextureManager.cpp.s
+.PHONY : src/game/TextureManager.cpp.s
+
 src/game/field.o: src/game/field.cpp.o
 
 .PHONY : src/game/field.o
@@ -547,6 +574,33 @@ src/game/field.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/field.cpp.s
 .PHONY : src/game/field.cpp.s
 
+src/game/figure.o: src/game/figure.cpp.o
+
+.PHONY : src/game/figure.o
+
+# target to build an object file
+src/game/figure.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/figure.cpp.o
+.PHONY : src/game/figure.cpp.o
+
+src/game/figure.i: src/game/figure.cpp.i
+
+.PHONY : src/game/figure.i
+
+# target to preprocess a source file
+src/game/figure.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/figure.cpp.i
+.PHONY : src/game/figure.cpp.i
+
+src/game/figure.s: src/game/figure.cpp.s
+
+.PHONY : src/game/figure.s
+
+# target to generate assembly for a file
+src/game/figure.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/figure.cpp.s
+.PHONY : src/game/figure.cpp.s
+
 src/game/game.o: src/game/game.cpp.o
 
 .PHONY : src/game/game.o
@@ -573,6 +627,33 @@ src/game/game.s: src/game/game.cpp.s
 src/game/game.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/game.cpp.s
 .PHONY : src/game/game.cpp.s
+
+src/game/player.o: src/game/player.cpp.o
+
+.PHONY : src/game/player.o
+
+# target to build an object file
+src/game/player.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/player.cpp.o
+.PHONY : src/game/player.cpp.o
+
+src/game/player.i: src/game/player.cpp.i
+
+.PHONY : src/game/player.i
+
+# target to preprocess a source file
+src/game/player.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/player.cpp.i
+.PHONY : src/game/player.cpp.i
+
+src/game/player.s: src/game/player.cpp.s
+
+.PHONY : src/game/player.s
+
+# target to generate assembly for a file
+src/game/player.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/game/player.cpp.s
+.PHONY : src/game/player.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -641,12 +722,21 @@ help:
 	@echo "... ContinuousTest"
 	@echo "... ContinuousUpdate"
 	@echo "... ExperimentalBuild"
+	@echo "... src/game/TextureManager.o"
+	@echo "... src/game/TextureManager.i"
+	@echo "... src/game/TextureManager.s"
 	@echo "... src/game/field.o"
 	@echo "... src/game/field.i"
 	@echo "... src/game/field.s"
+	@echo "... src/game/figure.o"
+	@echo "... src/game/figure.i"
+	@echo "... src/game/figure.s"
 	@echo "... src/game/game.o"
 	@echo "... src/game/game.i"
 	@echo "... src/game/game.s"
+	@echo "... src/game/player.o"
+	@echo "... src/game/player.i"
+	@echo "... src/game/player.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
