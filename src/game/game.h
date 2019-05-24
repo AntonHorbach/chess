@@ -14,8 +14,8 @@ class Game {
 
     Field field;
 
-    std::unique_ptr<Player> white_player;
-    std::unique_ptr<Player> black_player;
+    Player white_player;
+    Player black_player;
 
     bool isRunning;
 

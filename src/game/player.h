@@ -6,13 +6,12 @@
 #include <string>
 
 #include "figure.h"
+#include "../tools/tools.h"
 
 using Color = bool;
 
 #define WHITE true
 #define BLACK false
-
-#define ind_FT (size_t)FT
 
 class Player {
     std::vector<Figure> figures;
@@ -23,9 +22,9 @@ public:
 
     bool init(SDL_Renderer* renderer);
 
-    void handleEvents(SDL_Event* event);
-    void update(size_t ind, size_t x, size_t y);
-    void render(SDL_Renderer* renderer);
+    bool handleEvents(SDL_Event* event);
+    void killIfFind(size_t x, size_t y);
+    void render();
 };
 
 #endif

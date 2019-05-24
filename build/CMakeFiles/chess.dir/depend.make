@@ -7,6 +7,7 @@ CMakeFiles/chess.dir/src/game/TextureManager.cpp.o: ../src/game/TextureManager.h
 CMakeFiles/chess.dir/src/game/field.cpp.o: ../src/game/TextureManager.h
 CMakeFiles/chess.dir/src/game/field.cpp.o: ../src/game/field.cpp
 CMakeFiles/chess.dir/src/game/field.cpp.o: ../src/game/field.h
+CMakeFiles/chess.dir/src/game/field.cpp.o: ../src/game/figure.h
 
 CMakeFiles/chess.dir/src/game/figure.cpp.o: ../src/game/TextureManager.h
 CMakeFiles/chess.dir/src/game/figure.cpp.o: ../src/game/figure.cpp
@@ -18,11 +19,13 @@ CMakeFiles/chess.dir/src/game/game.cpp.o: ../src/game/figure.h
 CMakeFiles/chess.dir/src/game/game.cpp.o: ../src/game/game.cpp
 CMakeFiles/chess.dir/src/game/game.cpp.o: ../src/game/game.h
 CMakeFiles/chess.dir/src/game/game.cpp.o: ../src/game/player.h
+CMakeFiles/chess.dir/src/game/game.cpp.o: ../src/tools/tools.h
 
 CMakeFiles/chess.dir/src/game/player.cpp.o: ../src/game/TextureManager.h
 CMakeFiles/chess.dir/src/game/player.cpp.o: ../src/game/figure.h
 CMakeFiles/chess.dir/src/game/player.cpp.o: ../src/game/player.cpp
 CMakeFiles/chess.dir/src/game/player.cpp.o: ../src/game/player.h
+CMakeFiles/chess.dir/src/game/player.cpp.o: ../src/tools/tools.h
 
 CMakeFiles/chess.dir/src/main.cpp.o: ../src/game/TextureManager.h
 CMakeFiles/chess.dir/src/main.cpp.o: ../src/game/field.h
@@ -30,4 +33,8 @@ CMakeFiles/chess.dir/src/main.cpp.o: ../src/game/figure.h
 CMakeFiles/chess.dir/src/main.cpp.o: ../src/game/game.h
 CMakeFiles/chess.dir/src/main.cpp.o: ../src/game/player.h
 CMakeFiles/chess.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/chess.dir/src/main.cpp.o: ../src/tools/tools.h
+
+CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o: ../src/tools/movesGenerators.cpp
+CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o: ../src/tools/tools.h
 

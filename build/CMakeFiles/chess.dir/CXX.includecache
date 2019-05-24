@@ -17,8 +17,16 @@ SDL2/SDL_image.h
 -
 iostream
 -
+vector
+-
 TextureManager.h
 /home/anton/Code/C++/chess/src/game/TextureManager.h
+figure.h
+/home/anton/Code/C++/chess/src/game/figure.h
+
+/home/anton/Code/C++/chess/src/game/figure.cpp
+figure.h
+/home/anton/Code/C++/chess/src/game/figure.h
 
 /home/anton/Code/C++/chess/src/game/figure.h
 SDL2/SDL.h
@@ -30,6 +38,10 @@ iostream
 vector
 -
 string
+-
+algorithm
+-
+memory
 -
 TextureManager.h
 /home/anton/Code/C++/chess/src/game/TextureManager.h
@@ -50,6 +62,10 @@ field.h
 player.h
 /home/anton/Code/C++/chess/src/game/player.h
 
+/home/anton/Code/C++/chess/src/game/player.cpp
+player.h
+/home/anton/Code/C++/chess/src/game/player.h
+
 /home/anton/Code/C++/chess/src/game/player.h
 SDL2/SDL.h
 -
@@ -59,4 +75,18 @@ string
 -
 figure.h
 /home/anton/Code/C++/chess/src/game/figure.h
+../tools/tools.h
+/home/anton/Code/C++/chess/src/tools/tools.h
+
+/home/anton/Code/C++/chess/src/main.cpp
+game/game.h
+/home/anton/Code/C++/chess/src/game/game.h
+
+/home/anton/Code/C++/chess/src/tools/movesGenerators.cpp
+tools.h
+/home/anton/Code/C++/chess/src/tools/tools.h
+
+/home/anton/Code/C++/chess/src/tools/tools.h
+vector
+-
 

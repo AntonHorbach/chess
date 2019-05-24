@@ -682,6 +682,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/tools/movesGenerators.o: src/tools/movesGenerators.cpp.o
+
+.PHONY : src/tools/movesGenerators.o
+
+# target to build an object file
+src/tools/movesGenerators.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o
+.PHONY : src/tools/movesGenerators.cpp.o
+
+src/tools/movesGenerators.i: src/tools/movesGenerators.cpp.i
+
+.PHONY : src/tools/movesGenerators.i
+
+# target to preprocess a source file
+src/tools/movesGenerators.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.i
+.PHONY : src/tools/movesGenerators.cpp.i
+
+src/tools/movesGenerators.s: src/tools/movesGenerators.cpp.s
+
+.PHONY : src/tools/movesGenerators.s
+
+# target to generate assembly for a file
+src/tools/movesGenerators.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.s
+.PHONY : src/tools/movesGenerators.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -740,6 +767,9 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/tools/movesGenerators.o"
+	@echo "... src/tools/movesGenerators.i"
+	@echo "... src/tools/movesGenerators.s"
 .PHONY : help
 
 

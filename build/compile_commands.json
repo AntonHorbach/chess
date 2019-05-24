@@ -1,32 +1,37 @@
 [
 {
   "directory": "/home/anton/Code/C++/chess/build",
-  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/main.cpp.o -c /home/anton/Code/C++/chess/src/main.cpp",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/main.cpp.o -c /home/anton/Code/C++/chess/src/main.cpp",
   "file": "/home/anton/Code/C++/chess/src/main.cpp"
 },
 {
   "directory": "/home/anton/Code/C++/chess/build",
-  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/game.cpp.o -c /home/anton/Code/C++/chess/src/game/game.cpp",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/game/game.cpp.o -c /home/anton/Code/C++/chess/src/game/game.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/game.cpp"
 },
 {
   "directory": "/home/anton/Code/C++/chess/build",
-  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/field.cpp.o -c /home/anton/Code/C++/chess/src/game/field.cpp",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/game/field.cpp.o -c /home/anton/Code/C++/chess/src/game/field.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/field.cpp"
 },
 {
   "directory": "/home/anton/Code/C++/chess/build",
-  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/TextureManager.cpp.o -c /home/anton/Code/C++/chess/src/game/TextureManager.cpp",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/game/TextureManager.cpp.o -c /home/anton/Code/C++/chess/src/game/TextureManager.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/TextureManager.cpp"
 },
 {
   "directory": "/home/anton/Code/C++/chess/build",
-  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/figure.cpp.o -c /home/anton/Code/C++/chess/src/game/figure.cpp",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/game/figure.cpp.o -c /home/anton/Code/C++/chess/src/game/figure.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/figure.cpp"
 },
 {
   "directory": "/home/anton/Code/C++/chess/build",
-  "command": "/usr/bin/clang++-7    -g   -o CMakeFiles/chess.dir/src/game/player.cpp.o -c /home/anton/Code/C++/chess/src/game/player.cpp",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o -c /home/anton/Code/C++/chess/src/tools/movesGenerators.cpp",
+  "file": "/home/anton/Code/C++/chess/src/tools/movesGenerators.cpp"
+},
+{
+  "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/game/player.cpp.o -c /home/anton/Code/C++/chess/src/game/player.cpp",
   "file": "/home/anton/Code/C++/chess/src/game/player.cpp"
 }
 ]

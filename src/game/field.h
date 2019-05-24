@@ -3,16 +3,18 @@
 
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <vector>
 
 #include "TextureManager.h"
+#include "figure.h"
 
 #define BLACK_SQUARE 16
 #define WHITE_SQUARE 17
 
-const uint8_t SIZE = 8;
+const size_t SIZE = 8;
 
 class Field {
-    uint8_t field[SIZE][SIZE];
+    size_t field[SIZE][SIZE];
 
     SDL_Texture* white_square;
     SDL_Texture* black_square;
