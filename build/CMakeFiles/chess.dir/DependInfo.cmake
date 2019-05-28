@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/anton/Code/C++/chess/src/game/player.cpp" "/home/anton/Code/C++/chess/build/CMakeFiles/chess.dir/src/game/player.cpp.o"
   "/home/anton/Code/C++/chess/src/main.cpp" "/home/anton/Code/C++/chess/build/CMakeFiles/chess.dir/src/main.cpp.o"
   "/home/anton/Code/C++/chess/src/tools/movesGenerators.cpp" "/home/anton/Code/C++/chess/build/CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o"
+  "/home/anton/Code/C++/chess/src/tools/vectorTools.cpp" "/home/anton/Code/C++/chess/build/CMakeFiles/chess.dir/src/tools/vectorTools.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

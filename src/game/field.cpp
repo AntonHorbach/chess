@@ -1,8 +1,28 @@
 #include "field.h"
 
 Field::Field()
-    : white_square(nullptr), black_square(nullptr)
 {
+    resetSquares();
+}
+
+void Field::changeSquares(size_t x, size_t y,
+                          const std::vector<std::pair<int, int>>& squares,
+                          int flag)
+{
+    if(flag < WHITE_SQUARE || flag > ATTACK_SQUARE) return;
+
+    for(const auto& square : squares) {
+        if(x + square.first < 0 || x + square.first >= SIZE
+            || y + square.second < 0 || y + square.second >=SIZE)
+        {
+            continue;
+        }
+
+        field[y + square.second][x + square.first] = flag;
+    }
+}
+
+void Field::resetSquares() {
     for(size_t i = 0; i < SIZE; ++i){
         for(size_t j = 0; j < SIZE; ++j){
             field[i][j] = (i + j)%2 == 0 ? WHITE_SQUARE : BLACK_SQUARE;
@@ -13,8 +33,12 @@ Field::Field()
 bool Field::init(SDL_Renderer* renderer) {
     white_square = TextureManager::loadTexture(renderer, "./assets/white_square.png");
     black_square = TextureManager::loadTexture(renderer, "./assets/black_square.png");
+    move_square = TextureManager::loadTexture(renderer, "./assets/move_square.png");
+    attack_square = TextureManager::loadTexture(renderer, "./assets/attack_square.png");
 
-    if(white_square == nullptr || black_square == nullptr) {
+    if(white_square == nullptr || black_square == nullptr || move_square == nullptr
+        || attack_square == nullptr)
+    {
         std::cout << "Can't load textures: " << SDL_GetError() << std::endl;
         return false;
     }
@@ -48,6 +72,12 @@ void Field::render(SDL_Renderer* renderer) {
             case BLACK_SQUARE:
                 cur_texture = black_square;
                 break;
+            case MOVE_SQUARE:
+                cur_texture = move_square;
+                break;
+            case ATTACK_SQUARE:
+                cur_texture = attack_square;
+                break;
             }
 
             SDL_RenderCopy(renderer, cur_texture, &square_srcrect, &square_dstrect);
@@ -70,4 +100,6 @@ void Field::handleEvents(SDL_Event* event) {
 Field::~Field() {
     SDL_DestroyTexture(white_square);
     SDL_DestroyTexture(black_square);
+    SDL_DestroyTexture(move_square);
+    SDL_DestroyTexture(attack_square);
 }

@@ -38,3 +38,6 @@ CMakeFiles/chess.dir/src/main.cpp.o: ../src/tools/tools.h
 CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o: ../src/tools/movesGenerators.cpp
 CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o: ../src/tools/tools.h
 
+CMakeFiles/chess.dir/src/tools/vectorTools.cpp.o: ../src/tools/tools.h
+CMakeFiles/chess.dir/src/tools/vectorTools.cpp.o: ../src/tools/vectorTools.cpp
+

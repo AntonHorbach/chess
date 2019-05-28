@@ -5,7 +5,7 @@ std::vector<std::pair<int, int>> generateLongStraightMoves()
 {
     std::vector<std::pair<int, int>> res;
 
-    for(size_t i = 0; i < MAX; ++i) {
+    for(size_t i = 1; i < MAX; ++i) {
         res.push_back({0, i});
         res.push_back({i, 0});
         res.push_back({0, -i});
@@ -15,7 +15,7 @@ std::vector<std::pair<int, int>> generateLongStraightMoves()
     return res;
 }
 
-std::vector<std::pair<int, int>> generateLongVerticalMoves()
+std::vector<std::pair<int, int>> generateLongDiagonalMoves()
 {
     std::vector<std::pair<int, int>> res;
 

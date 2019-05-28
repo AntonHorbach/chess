@@ -39,6 +39,10 @@ bool Game::init(const char* title, int x, int y, int width, int height, bool ful
 }
 
 void Game::handleEvents() {
+    static int halfMove = 0;
+    Player* current_player = (halfMove % 2 == 0) ? &white_player : &black_player;
+    Player* another_player = (current_player == &white_player) ? &black_player : &white_player;
+
     SDL_Event event;
 
     while(SDL_PollEvent(&event)) {
@@ -47,19 +51,39 @@ void Game::handleEvents() {
             isRunning = false;
             break;
         case SDL_MOUSEBUTTONDOWN: {
-            if(!white_player.handleEvents(&event))
-                black_player.handleEvents(&event);
+            if(current_player->handleEvents(&event)){
+                current_player->update(another_player);
 
+                field.changeSquares(
+                    event.button.x / (480 / 8), event.button.y / (480 / 8),
+                    current_player->getFigure(event.button.x, event.button.y)->getAvailableMoves()
+                );
+
+                field.changeSquares(
+                    event.button.x / (480 / 8), event.button.y / (480 / 8),
+                    current_player->getFigure(event.button.x, event.button.y)->getAvailableAttacks(),
+                    ATTACK_SQUARE
+                );
+            }
             break;
         }
         case SDL_MOUSEBUTTONUP: {
-            if(white_player.handleEvents(&event)) {}
-            else if(black_player.handleEvents(&event)) {}
+            if(current_player->handleEvents(&event)) {
+                if(current_player->isAttack() &&
+                    another_player->killIfFind(event.button.x, event.button.y)) {
+                    ++halfMove;
+                }
+                else if(!current_player->isMove()) {
+                    current_player->rollback();
+                }
+                else ++halfMove;
+            }
+
+            field.resetSquares();
+            break;
         }
         case SDL_MOUSEMOTION: {
-            if(!white_player.handleEvents(&event))
-                black_player.handleEvents(&event);
-
+            current_player->handleEvents(&event);
             break;
         }
         default:

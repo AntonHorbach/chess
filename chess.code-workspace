@@ -40,7 +40,8 @@
 			"tuple": "cpp",
 			"utility": "cpp",
 			"memory": "cpp",
-			"algorithm": "cpp"
+			"algorithm": "cpp",
+			"deque": "cpp"
 		}
 	}
 }

@@ -10,14 +10,18 @@
 
 #define BLACK_SQUARE 16
 #define WHITE_SQUARE 17
+#define MOVE_SQUARE 18
+#define ATTACK_SQUARE 19
 
 const size_t SIZE = 8;
 
 class Field {
-    size_t field[SIZE][SIZE];
+    int field[SIZE][SIZE];
 
     SDL_Texture* white_square;
     SDL_Texture* black_square;
+    SDL_Texture* move_square;
+    SDL_Texture* attack_square;
 
     SDL_Rect square_srcrect;
     SDL_Rect square_dstrect;
@@ -25,6 +29,11 @@ class Field {
 public:
     Field();
     ~Field();
+
+    void changeSquares(size_t x, size_t y,
+                       const std::vector<std::pair<int, int>>& squares,
+                       int flag = MOVE_SQUARE);
+    void resetSquares();
 
     bool init(SDL_Renderer* renderer);
     void handleEvents(SDL_Event* event);

@@ -8,6 +8,7 @@ enable_testing()
 
 add_executable(chess src/main.cpp src/game/game.cpp src/game/field.cpp
                 src/game/TextureManager.cpp src/game/figure.cpp
+                src/tools/vectorTools.cpp
                 src/tools/movesGenerators.cpp
                 src/game/player.cpp)
                 

@@ -48,32 +48,48 @@ bool Player::init(SDL_Renderer* renderer) {
         }
     }
 
+    std::vector<MOVE> actions;
     for(size_t i = 0; i < figures.size(); ++i) {
         if(figures[i].getType() == ind_FT::LEFT_ROOK
          || figures[i].getType() == ind_FT::RIGHT_ROOK)
         {
-            figures[i].setAttacks(tools::generateLongStraightMoves());
+            actions = tools::generateLongStraightMoves();
+            figures[i].setAttacks(actions);
+            figures[i].setMoves(actions);
         }
         else if(figures[i].getType() == ind_FT::LEFT_HORSE
             || figures[i].getType() == ind_FT::RIGHT_HORSE)
         {
-            figures[i].setAttacks(tools::generateMoves(
+            actions = tools::generateMoves(
                 {{2, 1}, {1, 2}}
-            ));
+            );
+
+            figures[i].setAttacks(actions);
+            figures[i].setMoves(actions);
         }
         else if(figures[i].getType() == ind_FT::LEFT_ELEPHANT
             || figures[i].getType() == ind_FT::RIGHT_ELEPHANT)
         {
-            figures[i].setAttacks(tools::generateLongVerticalMoves());
+            actions = tools::generateLongDiagonalMoves();
+            figures[i].setAttacks(actions);
+            figures[i].setMoves(actions);
         }
         else if(figures[i].getType() == ind_FT::QUEEN) {
-            figures[i].setAttacks(tools::generateLongStraightMoves());
-            figures[i].setAttacks(tools::generateLongVerticalMoves());
+            actions = tools::generateLongStraightMoves();
+            figures[i].setAttacks(actions);
+            figures[i].setMoves(actions);
+
+            actions = tools::generateLongDiagonalMoves();
+            figures[i].setAttacks(actions);
+            figures[i].setMoves(actions);
         }
         else if(figures[i].getType() == ind_FT::KING) {
-            figures[i].setAttacks(tools::generateMoves(
+            actions = tools::generateMoves(
                 {{1, 1}, {0, 1}, {1, 0}}
-            ));
+            );
+            
+            figures[i].setAttacks(actions);
+            figures[i].setMoves(actions);
         }
         else {
             if(color == WHITE) {
@@ -99,8 +115,19 @@ bool Player::handleEvents(SDL_Event* event) {
         if((event->type == SDL_MOUSEBUTTONUP || event->type == SDL_MOUSEMOTION)
              && figures[i].isDragging())
         {
-                figures[i].handleEvents(event);
+            if(figures[i].handleEvents(event) && event->type == SDL_MOUSEBUTTONUP)
+            {
+                prevs.push(i);
+                futures = std::stack<size_t>();
+
                 return true;
+            }
+            else if(event->type == SDL_MOUSEMOTION) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
         else if(event->type == SDL_MOUSEBUTTONDOWN && figures[i].getX() == x &&
          figures[i].getY() == y)
@@ -120,11 +147,82 @@ void Player::render() {
     }
 }
 
-void Player::killIfFind(size_t x, size_t y) {
+void Player::update(const Player* enemy) {
+    std::vector<MOVE> available_moves;
+    std::vector<POS> poses;
+
+    poses.reserve(enemy->figures.size() + figures.size());
+
+    for(size_t i = 0; i < figures.size(); ++i) {
+        poses.clear();
+        available_moves.clear();
+
+        std::vector<POS> enemy_poses(figures.size());
+        for(size_t j = 0; j < enemy->figures.size(); ++j) {
+            enemy_poses[j] = {enemy->figures[j].getX(), enemy->figures[j].getY()};
+        }
+
+        for(size_t j = 0; j < figures.size(); ++j) {
+            poses.push_back({figures[j].getX(), figures[j].getY()});
+        }
+        tools::add(poses, enemy_poses);
+
+        available_moves = tools::clipping(
+            figures[i].getX(), figures[i].getY(),
+            figures[i].getMoves(), poses
+        );
+
+        figures[i].updateAvailableAttacks(
+            tools::findMatches(
+                figures[i].getX(), figures[i].getY(),
+                tools::clipping(
+                    figures[i].getX(), figures[i].getY(),
+                    figures[i].getAttacks(), poses, true
+                ), enemy_poses
+            )
+        );
+        figures[i].updateAvailableMoves(available_moves);
+    }
+}
+
+bool Player::killIfFind(size_t x, size_t y) {
+    x = x / (480 / 8);
+    y = y / (480 / 8);
+
     for(size_t i = 0; i < figures.size(); ++i) {
         if(figures[i].getX() == x && figures[i].getY() == y) {
             figures[i].kill();
-            return;
+            return true;
         }
     }
+
+    return false;
+}
+
+void Player::rollback() {
+    if(prevs.empty()) return;
+
+    figures[prevs.top()].rollback();
+    futures.push(prevs.top());
+    prevs.pop();
+}
+
+bool Player::isMove() {
+    return figures[prevs.top()].isMove();
+}
+
+bool Player::isAttack() {
+    return figures[prevs.top()].isAttack();
+}
+
+const Figure* Player::getFigure(size_t x, size_t y) {
+    x = x / (480 / 8);
+    y = y / (480 / 8);
+
+    for(const Figure& figure : figures) {
+        if(figure.getX() == x && figure.getY() == y)
+            return &figure;
+    }
+
+    return nullptr;
 }

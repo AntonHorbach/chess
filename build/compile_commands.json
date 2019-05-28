@@ -26,6 +26,11 @@
 },
 {
   "directory": "/home/anton/Code/C++/chess/build",
+  "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/tools/vectorTools.cpp.o -c /home/anton/Code/C++/chess/src/tools/vectorTools.cpp",
+  "file": "/home/anton/Code/C++/chess/src/tools/vectorTools.cpp"
+},
+{
+  "directory": "/home/anton/Code/C++/chess/build",
   "command": "/usr/bin/clang++-7    -g   -std=gnu++17 -o CMakeFiles/chess.dir/src/tools/movesGenerators.cpp.o -c /home/anton/Code/C++/chess/src/tools/movesGenerators.cpp",
   "file": "/home/anton/Code/C++/chess/src/tools/movesGenerators.cpp"
 },
