@@ -12,7 +12,15 @@ SDL2/SDL.h
 SDL2/SDL_image.h
 -
 
-/home/anton/Code/C++/chess/src/game/figure.cpp
+/home/anton/Code/C++/chess/src/game/field.h
+SDL2/SDL_image.h
+-
+iostream
+-
+vector
+-
+TextureManager.h
+/home/anton/Code/C++/chess/src/game/TextureManager.h
 figure.h
 /home/anton/Code/C++/chess/src/game/figure.h
 
@@ -36,9 +44,23 @@ memory
 TextureManager.h
 /home/anton/Code/C++/chess/src/game/TextureManager.h
 
-/home/anton/Code/C++/chess/src/game/player.cpp
+/home/anton/Code/C++/chess/src/game/game.cpp
+game.h
+/home/anton/Code/C++/chess/src/game/game.h
+
+/home/anton/Code/C++/chess/src/game/game.h
+SDL2/SDL.h
+-
+iostream
+-
+memory
+-
+field.h
+/home/anton/Code/C++/chess/src/game/field.h
 player.h
 /home/anton/Code/C++/chess/src/game/player.h
+../tools/tools.h
+/home/anton/Code/C++/chess/src/tools/tools.h
 
 /home/anton/Code/C++/chess/src/game/player.h
 SDL2/SDL.h

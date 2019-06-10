@@ -7,6 +7,7 @@
 
 #include "field.h"
 #include "player.h"
+#include "../tools/tools.h"
 
 class Game {
     SDL_Window* window;
@@ -23,11 +24,14 @@ class Game {
     void handleEvents();
     void update();
 
+    bool checkmate(Player* current_player, Player* another_player);
+    bool pat(Player* current_player);
+
 public:
     Game();
     ~Game();
 
-    bool init(const char* title, int x, int y, int width, int height, bool fullscrean);
+    bool init(const char* title, int x, int y, int width, int height, bool fullscreen);
     int exec();
 };
 

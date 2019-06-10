@@ -26,8 +26,8 @@ size_t Figure::getY() const {
     return y;
 }
 
-size_t Figure::getType() const {
-    return (size_t)type;
+FT Figure::getType() const {
+    return type;
 }
 
 const std::vector<MOVE>& Figure::getMoves() const {
@@ -59,8 +59,19 @@ void Figure::setMoves(const std::vector<MOVE>& moves) {
 }
 
 void Figure::kill() {
-    setX_Y(INFINITY, INFINITY);
+    prevs.push({x, y});
+    futures = std::stack<MOVE>();
+
+    setX_Y(-INFINITY, -INFINITY);
     dead = true;
+}
+
+void Figure::reset(size_t x, size_t y) {
+    setX_Y(x, y);
+    dead = false;
+
+    prevs = std::stack<MOVE>();
+    futures = std::stack<MOVE>();
 }
 
 bool Figure::isDead() const {
@@ -113,11 +124,11 @@ bool Figure::init(SDL_Renderer* renderer, const std::string& path_to_sprite) {
     return true;
 }
 
-void Figure::updateAvailableMoves(const std::vector<MOVE>& moves) {
+void Figure::updateAvailableMoves(std::vector<MOVE>&& moves) {
     availableMoves = moves;
 }
 
-void Figure::updateAvailableAttacks(const std::vector<MOVE>& attacks) {
+void Figure::updateAvailableAttacks(std::vector<MOVE>&& attacks) {
     availableAttacks = attacks;
 }
 

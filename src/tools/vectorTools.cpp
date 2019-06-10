@@ -7,6 +7,11 @@ std::vector<std::pair<int, int>> clipping(
                 const std::vector<std::pair<int, int>>& filter,
                 bool INCLUDING)
 {
+    struct Memory {
+        int x, y;
+        int dx, dy;
+    };
+
     std::vector<std::pair<int, int>> res;
     std::vector<Memory> memory;
 
@@ -23,7 +28,7 @@ std::vector<std::pair<int, int>> clipping(
 
                 memory.push_back(mem);
 
-                if(!INCLUDING) flag = true;
+                if(INCLUDING) flag = true;
                 break;
             }
         }
@@ -34,6 +39,14 @@ std::vector<std::pair<int, int>> clipping(
     }
 
     for(int i = 0; i < res.size(); ++i) {
+        if(x + res[i].first < 0 || x + res[i].first >= MAX ||
+            y + res[i].second < 0 || y + res[i].second >= MAX)
+        {
+            res.erase(std::remove(std::begin(res), std::end(res), res[i]), std::end(res));
+            i -= 1;
+            continue;
+        }
+
         for(size_t j = 0; j < memory.size(); ++j) {
             int dx  = memory[j].dx > 0 ? 1 : (memory[j].dx < 0 ? -1 : 0);
             int dy  = memory[j].dy > 0 ? 1 : (memory[j].dy < 0 ? -1 : 0);

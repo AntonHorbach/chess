@@ -65,7 +65,7 @@ public:
 
     size_t getX() const;
     size_t getY() const;
-    size_t getType() const;
+    FT getType() const;
     const std::vector<MOVE>& getMoves() const;
     const std::vector<MOVE>& getAttacks() const;
     const std::vector<MOVE>& getAvailableMoves() const;
@@ -73,14 +73,15 @@ public:
 
     void kill();
     void rollback();
+    void reset(size_t x, size_t y);
     bool isDead() const;
     bool isDragging() const;
     bool isMove() const;
     bool isAttack() const;
 
     bool init(SDL_Renderer* renderer, const std::string& path_to_sprite);
-    void updateAvailableMoves(const std::vector<MOVE>& moves);
-    void updateAvailableAttacks(const std::vector<MOVE>& attacks);
+    void updateAvailableMoves(std::vector<MOVE>&& moves);
+    void updateAvailableAttacks(std::vector<MOVE>&& attacks);
     void render();
     bool handleEvents(SDL_Event* event);
 };
