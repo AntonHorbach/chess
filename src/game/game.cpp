@@ -158,11 +158,11 @@ void Game::handleEvents() {
                 current_player->update(another_player);
                 another_player->update(current_player);
                 if(checkmate(current_player, another_player)) {
-                        std::string message(*current_player);
-                        std::cout << message + " did checkmate.\n";
+                    std::string message(*current_player);
+                    std::cout << message + " did checkmate.\n";
 
-                        isRunning = false;
-                        return;
+                    isRunning = false;
+                    return;
                 }
             }
 
