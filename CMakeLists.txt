@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 include(CTest)
 enable_testing()
 
-add_executable(chess src/main.cpp src/game/game.cpp src/game/field.cpp
+add_executable(chess src/game/main.cpp src/game/game.cpp src/game/field.cpp
                 src/game/TextureManager.cpp src/game/figure.cpp
                 src/tools/vectorTools.cpp
                 src/tools/movesGenerators.cpp
