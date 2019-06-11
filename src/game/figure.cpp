@@ -1,9 +1,5 @@
 #include "figure.h"
 
-std::shared_ptr<SDL_Texture> make_shared_texture(SDL_Texture* texture) {
-    return {texture, SDL_DestroyTexture};
-}
-
 Figure::Figure() {}
 
 Figure::Figure(size_t _x, size_t _y, FIGURES_TYPE _type)
@@ -106,7 +102,7 @@ bool Figure::isAttack() const {
 
 bool Figure::init(SDL_Renderer* renderer, const std::string& path_to_sprite) {
     this->renderer = renderer;
-    texture = make_shared_texture(TextureManager::loadTexture(renderer, path_to_sprite.c_str()));
+    texture = TextureManager::loadTexture(renderer, path_to_sprite.c_str());
 
     if(texture == nullptr) {
         std::cout << "texture for figure can't be load: "

@@ -8,11 +8,8 @@
 #include <stack>
 #include <string>
 #include <algorithm>
-#include <memory>
 
 #include "TextureManager.h"
-
-static std::shared_ptr<SDL_Texture> make_shared_texture(SDL_Texture* texture);
 
 enum class FIGURES_TYPE: size_t {
     LEFT_ROOK = 0, LEFT_HORSE, LEFT_ELEPHANT, QUEEN, KING,

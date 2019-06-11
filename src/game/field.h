@@ -4,6 +4,7 @@
 #include <SDL2/SDL_image.h>
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "TextureManager.h"
 #include "figure.h"
@@ -18,10 +19,10 @@ const size_t SIZE = 8;
 class Field {
     int field[SIZE][SIZE];
 
-    SDL_Texture* white_square;
-    SDL_Texture* black_square;
-    SDL_Texture* move_square;
-    SDL_Texture* attack_square;
+    std::shared_ptr<SDL_Texture> white_square;
+    std::shared_ptr<SDL_Texture> black_square;
+    std::shared_ptr<SDL_Texture> move_square;
+    std::shared_ptr<SDL_Texture> attack_square;
 
     SDL_Rect square_srcrect;
     SDL_Rect square_dstrect;

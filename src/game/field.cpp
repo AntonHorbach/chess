@@ -63,7 +63,7 @@ void Field::render(SDL_Renderer* renderer) {
         square_dstrect.x = 0;
 
         for(size_t j = 0; j < SIZE; ++j) {
-            SDL_Texture* cur_texture = nullptr;
+            std::shared_ptr<SDL_Texture> cur_texture = nullptr;
 
             switch(field[i][j]) {
             case WHITE_SQUARE:
@@ -80,7 +80,7 @@ void Field::render(SDL_Renderer* renderer) {
                 break;
             }
 
-            SDL_RenderCopy(renderer, cur_texture, &square_srcrect, &square_dstrect);
+            SDL_RenderCopy(renderer, cur_texture.get(), &square_srcrect, &square_dstrect);
 
             square_dstrect.x += square_dstrect.w;
         }
@@ -97,9 +97,4 @@ void Field::handleEvents(SDL_Event* event) {
 
 }
 
-Field::~Field() {
-    SDL_DestroyTexture(white_square);
-    SDL_DestroyTexture(black_square);
-    SDL_DestroyTexture(move_square);
-    SDL_DestroyTexture(attack_square);
-}
+Field::~Field() {}
