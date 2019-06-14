@@ -6,6 +6,86 @@
 #include <iostream>
 
 namespace tools {
+    template <typename T1, typename T2>
+    std::pair<T1, T2>& add(std::pair<T1, T2>& left, const std::pair<T1, T2> right);
+
+    template <typename T1, typename T2>
+    std::pair<T1, T2>& sub(std::pair<T1, T2>& left, const std::pair<T1, T2>& right);
+
+    template <typename T>
+    std::vector<T>& add(std::vector<T>& left, const std::vector<T>& right);
+
+    template <typename T>
+    std::vector<T>& sub(std::vector<T>& left, const std::vector<T>& right);
+
+    template <typename T>
+    std::vector<T>& increase(std::vector<T>& vec, const T& value);
+
+    template <typename T>
+    std::vector<T>& decrease(std::vector<T>& vec, const T& value);
+}
+
+template <typename T1, typename T2>
+std::pair<T1, T2>& operator+(std::pair<T1, T2> left, const std::pair<T1, T2>& right) {
+    return tools::add(left, right);
+}
+
+template <typename T1, typename T2>
+std::pair<T1, T2>& operator+=(std::pair<T1, T2>& left, const std::pair<T1, T2>& right) {
+    return tools::add(left, right);
+}
+
+template <typename T>
+std::vector<T>& operator-(std::vector<T> vec, const T& value) {
+    return tools::decrease(vec, value);
+}
+
+template <typename T>
+std::vector<T>& operator-=(std::vector<T>& vec, const T& value) {
+    return tools::decrease(vec, value);
+}
+
+template <typename T>
+std::vector<T>& operator+(std::vector<T> vec, const T& value) {
+    return tools::increase(vec, value);
+}
+
+template <typename T>
+std::vector<T>& operator+=(std::vector<T>& vec, const T& value) {
+    return tools::increase(vec, value);
+}
+
+template <typename T>
+std::vector<T>& operator-(std::vector<T> left, const std::vector<T>& right) {
+    return tools::sub(left, right);
+}
+
+template <typename T>
+std::vector<T>& operator-=(std::vector<T>& left, const std::vector<T>& right) {
+    return tools::sub(left, right);
+}
+
+template <typename T>
+std::vector<T>& operator+(std::vector<T> left, const std::vector<T>& right) {
+    return tools::add(left, right);
+}
+
+template <typename T>
+std::vector<T>& operator+=(std::vector<T>& left, const std::vector<T>& right) {
+    return tools::add(left, right);
+}
+
+template <typename T1, typename T2>
+std::pair<T1, T2>& operator-(std::pair<T1, T2> left, const std::pair<T1, T2>& right) {
+    return tools::sub(left, right);
+}
+
+template <typename T1, typename T2>
+std::pair<T1, T2>& operator-=(std::pair<T1, T2>& left, const std::pair<T1, T2>& right) {
+    return tools::sub(left, right);
+}
+
+namespace tools {
     static const size_t MAX = 8;
 
     std::vector<std::pair<int, int>> generateLongStraightMoves();
@@ -85,66 +165,6 @@ namespace tools {
 
         return vec;
     }
-}
-
-template <typename T1, typename T2>
-std::pair<T1, T2>& operator+(std::pair<T1, T2> left, const std::pair<T1, T2>& right) {
-    return tools::add(left, right);
-}
-
-template <typename T1, typename T2>
-std::pair<T1, T2>& operator+=(std::pair<T1, T2>& left, const std::pair<T1, T2>& right) {
-    return toools::add(left, right);
-}
-
-template <typename T>
-std::vector<T>& operator-(std::vector<T> vec, const T& value) {
-    return tools::decrease(vec, value);
-}
-
-template <typename T>
-std::vector<T>& operator-=(std::vector<T>& vec, const T& value) {
-    return toools::decrease(vec, value);
-}
-
-template <typename T>
-std::vector<T>& operator+(std::vector<T> vec, const T& value) {
-    return tools::increase(vec, value);
-}
-
-template <typename T>
-std::vector<T>& operator+=(std::vector<T>& vec, const T& value) {
-    return tools::increase(vec, value);
-}
-
-template <typename T>
-std::vector<T>& operator-(std::vector<T> left, const std::vector<T>& right) {
-    return tools::sub(left, right);
-}
-
-template <typename T>
-std::vector<T>& operator-=(std::vector<T>& left, const std::vector<T>& right) {
-    return tools::sub(left, right);
-}
-
-template <typename T>
-std::vector<T>& operator+(std::vector<T> left, const std::vector<T>& right) {
-    return tools::add(left, right);
-}
-
-template <typename T>
-std::vector<T>& operator+=(std::vector<T>& left, const std::vector<T>& right) {
-    return tools::add(left, right);
-}
-
-template <typename T1, typename T2>
-std::pair<T1, T2>& operator-(std::pair<T1, T2> left, const std::pair<T1, T2>& right) {
-    return tools::sub(left, right);
-}
-
-template <typename T1, typename T2>
-std::pair<T1, T2>& operator-=(std::pair<T1, T2>& left, const std::pair<T1, T2>& right) {
-    return tools::sub(left, right);
 }
 
 #endif
