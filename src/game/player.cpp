@@ -148,8 +148,6 @@ void Player::render() {
 }
 
 void Player::update(const Player* enemy) {
-    using namespace tools;
-
     std::vector<MOVE> available_moves;
     std::vector<MOVE> available_attacks;
     std::vector<POS> poses;

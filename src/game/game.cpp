@@ -39,9 +39,10 @@ bool Game::init(const char* title, int x, int y, int width, int height, bool ful
 }
 
 bool Game::checkmate(Player* current_player, Player* another_player) {
-    using namespace tools;
-
     const Figure* enemy_king = another_player->getFigure(FT::KING);
+
+    if(enemy_king->isDead()) return true;
+
     const std::vector<MOVE> kingAvailableMoves = enemy_king->getAvailableMoves() +
                                                   enemy_king->getAvailableAttacks();
     int available_moves_count = kingAvailableMoves.size();
@@ -53,15 +54,15 @@ bool Game::checkmate(Player* current_player, Player* another_player) {
     }
 
     for(const auto& figure : current_player->getFigures()) {
-        for(const auto& [x, y] : figure.getAvailableAttacks()) {
-            if(figure.getX() + x == enemy_king->getX() && figure.getY() + y == enemy_king->getY())
+        for(const auto& [dx, dy] : figure.getAvailableAttacks()) {
+            if(figure.getX() + dx == enemy_king->getX() && figure.getY() + dy == enemy_king->getY())
             {
                 direct_threat = true;
                 threats.push_back(std::reference_wrapper<const Figure>(figure));
                 break;
             }
 
-            if(std::find(std::begin(kingAvailableMoves), std::end(kingAvailableMoves), MOVE{x, y})
+            if(std::find(std::begin(kingAvailableMoves), std::end(kingAvailableMoves), MOVE{dx, dy})
                 != std::end(kingAvailableMoves))
             {
                 threats.push_back(std::reference_wrapper<const Figure>(figure));
@@ -74,9 +75,10 @@ bool Game::checkmate(Player* current_player, Player* another_player) {
 
     for(const Figure& threat : threats) {
         for(const Figure& figure : another_player->getFigures()) {
-            if(std::find(std::begin(figure.getAvailableAttacks()), 
-                        std::end(figure.getAvailableAttacks()), 
-                        POS{threat.getX(), threat.getY()}) != std::end(figure.getAvailableAttacks()))
+            std::vector<MOVE> actions = figure.getAvailableMoves() + figure.getAvailableAttacks();
+
+            if(std::find(std::begin(actions), std::end(actions), 
+                        POS{threat.getX(), threat.getY()}) != std::end(actions))
             {
                 --threats_count;
                 break;
