@@ -5,7 +5,7 @@ std::vector<std::pair<int, int>> clipping(
                 int x, int y,
                 const std::vector<std::pair<int, int>>& source,
                 const std::vector<std::pair<int, int>>& filter,
-                bool INCLUDING)
+                bool INCLUDING, const size_t MAX)
 {
     struct Memory {
         int x, y;

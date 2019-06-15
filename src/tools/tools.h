@@ -42,14 +42,12 @@ template <typename T1, typename T2>
 std::pair<T1, T2>& operator-(std::pair<T1, T2> left, const std::pair<T1, T2>& right);
 
 namespace tools {
-    static const size_t MAX = 8;
-
-    std::vector<std::pair<int, int>> generateLongStraightMoves();
+    std::vector<std::pair<int, int>> generateLongStraightMoves(const size_t MAX = 8);
 
     std::vector<std::pair<int, int>> generateMoves
                 (const std::vector<std::pair<int, int>>& pos_deltas);
 
-    std::vector<std::pair<int, int>> generateLongDiagonalMoves();
+    std::vector<std::pair<int, int>> generateLongDiagonalMoves(const size_t MAX = 8);
 
     std::vector<std::pair<int, int>> findMatches(
                 int x, int y,
@@ -61,7 +59,7 @@ namespace tools {
                 int x, int y,
                 const std::vector<std::pair<int, int>>& source,
                 const std::vector<std::pair<int, int>>& filter,
-                bool INCLUDING = true
+                bool INCLUDING = true, const size_t MAX = 8
     );
 }
 

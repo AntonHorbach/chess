@@ -1,7 +1,7 @@
 #include "tools.h"
 
 namespace tools {
-std::vector<std::pair<int, int>> generateLongStraightMoves()
+std::vector<std::pair<int, int>> generateLongStraightMoves(const size_t MAX)
 {
     std::vector<std::pair<int, int>> res;
 
@@ -15,7 +15,7 @@ std::vector<std::pair<int, int>> generateLongStraightMoves()
     return res;
 }
 
-std::vector<std::pair<int, int>> generateLongDiagonalMoves()
+std::vector<std::pair<int, int>> generateLongDiagonalMoves(const size_t MAX)
 {
     std::vector<std::pair<int, int>> res;
 
