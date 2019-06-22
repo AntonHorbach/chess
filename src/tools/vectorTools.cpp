@@ -77,16 +77,10 @@ std::vector<std::pair<int, int>> findMatches(
     std::vector<std::pair<int, int>> res;
 
     for(size_t i = 0; i < source.size(); ++i) {
-        bool flag = false;
-        for(size_t j = 0; j < filter.size(); ++j) {
-            if(x+source[i].first == filter[j].first && y+source[i].second == filter[j].second)
-            {
-                flag = true;
-                break;
-            }
-        }
-
-        if(flag) {
+        if(std::find(std::begin(filter), std::end(filter),
+                    source[i] + std::pair<int, int>{x, y})
+            != std::end(filter))
+        {
             res.push_back(source[i]);
         }
     }
