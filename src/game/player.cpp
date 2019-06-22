@@ -186,6 +186,8 @@ void Player::update(const Player* enemy) {
             available_moves += MOVE{figures[i].getX(), figures[i].getY()};
             available_attacks += MOVE{figures[i].getX(), figures[i].getY()};
 
+            std::vector<POS> coveredFigures;
+
             for(const Figure& figure : enemy->getFigures()) {
                 if(figure.isDead()) continue;
 
@@ -201,8 +203,17 @@ void Player::update(const Player* enemy) {
 
                 available_moves -= delta;
                 available_attacks -= delta;
+
+                coveredFigures += tools::findMatches(
+                    figure.getX(), figure.getY(),
+                    tools::clipping(
+                        figure.getX(), figure.getY(),
+                        figure.getAttacks(), enemy_poses, false
+                    ), enemy_poses
+                ) + MOVE{figure.getX(), figure.getY()};
             }
 
+            available_attacks -= coveredFigures;
             available_moves -= MOVE{figures[i].getX(), figures[i].getY()};
             available_attacks -= MOVE{figures[i].getX(), figures[i].getY()};
         }
