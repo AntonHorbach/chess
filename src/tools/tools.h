@@ -61,6 +61,12 @@ namespace tools {
                 const std::vector<std::pair<int, int>>& filter,
                 bool INCLUDING = true, const size_t MAX = 8
     );
+
+    std::vector<std::pair<int, int>> findMatches(
+                int x1, int y1,
+                int x2, int y2,
+                const std::vector<std::pair<int, int>>& source
+    );
 }
 
 template <typename T1, typename T2>

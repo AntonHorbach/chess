@@ -88,4 +88,23 @@ std::vector<std::pair<int, int>> findMatches(
     return res;
 }
 
+std::vector<std::pair<int, int>> findMatches(
+                int x1, int y1,
+                int x2, int y2,
+                const std::vector<std::pair<int, int>>& source)
+{
+    std::vector<std::pair<int, int>> res;
+    std::vector<std::pair<int, int>> range;
+
+    int dx  = abs(x1 - x2) > 0 ? 1 : (abs(x1 - x2) < 0 ? -1 : 0);
+    int dy  = abs(y1 - y2) > 0 ? 1 : (abs(y1 - y2) < 0 ? -1 : 0);
+    int x_ = x1, y_ = y1;
+
+    while(x_ < x2 || y_ < y2) {
+        range.push_back(std::pair<int, int>{x_ += dx, y_ += dy});
+    }
+
+    return findMatches(x1, y1, range, source);
+}
+
 }
