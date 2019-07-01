@@ -43,52 +43,54 @@ bool Game::checkmate(Player* current_player, Player* another_player) {
 
     if(enemy_king->isDead()) return true;
 
-    const std::vector<MOVE> kingAvailableMoves = enemy_king->getAvailableMoves() +
-                                                  enemy_king->getAvailableAttacks();
-    int available_moves_count = kingAvailableMoves.size();
-    std::vector<std::reference_wrapper<const Figure>> threats;
-    bool direct_threat = false;
-
-    if(available_moves_count != 0) {
+    if(enemy_king->getAvailableMoves().size() + enemy_king->getAvailableAttacks().size() != 0) {
         return false;
     }
 
+    std::vector<std::reference_wrapper<const Figure>> direct_threats;
+
     for(const auto& figure : current_player->getFigures()) {
-        for(const auto& [dx, dy] : figure.getAvailableAttacks()) {
+        std::vector<MOVE> actions = figure.getAvailableAttacks() + figure.getAvailableMoves();
+        for(const auto& [dx, dy] : actions) {
             if(figure.getX() + dx == enemy_king->getX() && figure.getY() + dy == enemy_king->getY())
             {
-                direct_threat = true;
-                threats.push_back(std::reference_wrapper<const Figure>(figure));
+                direct_threats.push_back(std::reference_wrapper<const Figure>(figure));
                 break;
-            }
-
-            if(std::find(std::begin(kingAvailableMoves), std::end(kingAvailableMoves), MOVE{dx, dy})
-                != std::end(kingAvailableMoves))
-            {
-                threats.push_back(std::reference_wrapper<const Figure>(figure));
-                --available_moves_count;
             }
         }
     }
 
-    size_t threats_count = threats.size();
+    if(direct_threats.empty()) return false;
+    else if(direct_threats.size() > 1) return true;
 
-    for(const Figure& threat : threats) {
+    for(const Figure& threat : direct_threats) {
+        bool flag = false;
         for(const Figure& figure : another_player->getFigures()) {
-            std::vector<MOVE> actions = figure.getAvailableMoves() + figure.getAvailableAttacks();
+            if(figure.isDead()) continue;
 
-            if(std::find(std::begin(actions), std::end(actions), 
-                        POS{threat.getX(), threat.getY()}) != std::end(actions))
+            std::vector<POS> attacks = figure.getAvailableAttacks() +
+                                        POS{figure.getX(), figure.getY()};
+
+            if(std::find(std::begin(attacks), std::end(attacks), POS{threat.getX(), threat.getY()})
+                != std::end(attacks))
             {
-                --threats_count;
-                break;
+                return false;
+            }
+            
+            if(threat.getType() == FT::LEFT_HORSE || threat.getType() == FT::RIGHT_HORSE)
+                continue;
+
+            if(figure.getType() != FT::PAWN_7) continue;
+            if(tools::findMatches(threat.getX(), threat.getY(), enemy_king->getX(), enemy_king->getY(),
+                                figure.getAvailableMoves() + POS{figure.getX(), figure.getY()})
+                .size() != 0)
+            {
+                return false;
             }
         }
     }
 
-    if(threats_count != 0 && available_moves_count == 0) return true;
-
-    return false;
+    return true;
 }
 
 bool Game::pat(Player* current_player) {
