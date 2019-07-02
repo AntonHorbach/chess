@@ -4,23 +4,17 @@ Player::Player(Color _color)
     : color(_color), figures(16)
 {
     int step = (color == BLACK ? -1 : 1);
-    size_t begin_x = (color == BLACK ? 7 : 0);
-    size_t x = begin_x - step;
+    size_t x = 0;
     size_t y = (color == BLACK ? 0 : 7);
 
-    figures[ind_FT::LEFT_ROOK] = Figure(x += step, y, FT::LEFT_ROOK);
-    figures[ind_FT::LEFT_HORSE] = Figure(x += step, y, FT::LEFT_HORSE);
-    figures[ind_FT::LEFT_ELEPHANT] = Figure(x += step, y, FT::LEFT_ELEPHANT);
-    figures[ind_FT::QUEEN] = Figure(x += step, y, FT::QUEEN);
-    figures[ind_FT::KING] = Figure(x += step, y, FT::KING);
-    figures[ind_FT::RIGHT_ELEPHANT] = Figure(x += step, y, FT::RIGHT_ELEPHANT);
-    figures[ind_FT::RIGHT_HORSE] = Figure(x += step, y, FT::RIGHT_HORSE);
-    figures[ind_FT::RIGHT_ROOK] = Figure(x += step, y, FT::RIGHT_ROOK);
+    for(size_t i = ind_FT::LEFT_ROOK; i < ind_FT::PAWN_1; ++i, x += 1) {
+        figures[i] = Figure(x, y, (FT)i);
+    }
 
-    x = begin_x;
+    x = 0;
     y -= step;
 
-    for(size_t i = ind_FT::PAWN_1; i <= ind_FT::PAWN_8; ++i, x += step) {
+    for(size_t i = ind_FT::PAWN_1; i <= ind_FT::PAWN_8; ++i, x += 1) {
         figures[i] = Figure(x, y, (FT)i);
     }
 }
