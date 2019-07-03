@@ -7,9 +7,9 @@ Field::Field()
 
 void Field::changeSquares(size_t x, size_t y,
                           const std::vector<std::pair<int, int>>& squares,
-                          int flag)
+                          SQUARE square_type)
 {
-    if(flag < WHITE_SQUARE || flag > ATTACK_SQUARE) return;
+    if(square_type != SQUARE::MOVE_SQUARE && square_type != SQUARE::ATTACK_SQUARE) return;
 
     for(const auto& square : squares) {
         if(x + square.first < 0 || x + square.first >= SIZE
@@ -18,14 +18,14 @@ void Field::changeSquares(size_t x, size_t y,
             continue;
         }
 
-        field[y + square.second][x + square.first] = flag;
+        field[y + square.second][x + square.first] = (size_t)square_type;
     }
 }
 
 void Field::resetSquares() {
     for(size_t i = 0; i < SIZE; ++i){
         for(size_t j = 0; j < SIZE; ++j){
-            field[i][j] = (i + j)%2 == 0 ? WHITE_SQUARE : BLACK_SQUARE;
+            field[i][j] = (i + j)%2 == 0 ? (size_t)SQUARE::WHITE_SQUARE : (size_t)SQUARE::BLACK_SQUARE;
         }
     }
 }
@@ -65,17 +65,17 @@ void Field::render(SDL_Renderer* renderer) {
         for(size_t j = 0; j < SIZE; ++j) {
             std::shared_ptr<SDL_Texture> cur_texture = nullptr;
 
-            switch(field[i][j]) {
-            case WHITE_SQUARE:
+            switch((SQUARE)field[i][j]) {
+            case SQUARE::WHITE_SQUARE:
                 cur_texture = white_square;
                 break;
-            case BLACK_SQUARE:
+            case SQUARE::BLACK_SQUARE:
                 cur_texture = black_square;
                 break;
-            case MOVE_SQUARE:
+            case SQUARE::MOVE_SQUARE:
                 cur_texture = move_square;
                 break;
-            case ATTACK_SQUARE:
+            case SQUARE::ATTACK_SQUARE:
                 cur_texture = attack_square;
                 break;
             }

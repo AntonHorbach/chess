@@ -141,7 +141,7 @@ void Game::handleEvents() {
                 field.changeSquares(
                     event.button.x / (480 / 8), event.button.y / (480 / 8),
                     current_player->getFigure(event.button.x, event.button.y)->getAvailableAttacks(),
-                    ATTACK_SQUARE
+                    SQUARE::ATTACK_SQUARE
                 );
             }
             break;

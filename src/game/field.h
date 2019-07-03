@@ -9,15 +9,14 @@
 #include "TextureManager.h"
 #include "figure.h"
 
-#define BLACK_SQUARE 16
-#define WHITE_SQUARE 17
-#define MOVE_SQUARE 18
-#define ATTACK_SQUARE 19
+enum class SQUARE: size_t {
+    BLACK_SQUARE = 16, WHITE_SQUARE = 17, MOVE_SQUARE = 18, ATTACK_SQUARE = 19
+};
 
 const size_t SIZE = 8;
 
 class Field {
-    int field[SIZE][SIZE];
+    size_t field[SIZE][SIZE];
 
     std::shared_ptr<SDL_Texture> white_square;
     std::shared_ptr<SDL_Texture> black_square;
@@ -33,7 +32,7 @@ public:
 
     void changeSquares(size_t x, size_t y,
                        const std::vector<std::pair<int, int>>& squares,
-                       int flag = MOVE_SQUARE);
+                       SQUARE square = SQUARE::MOVE_SQUARE);
     void resetSquares();
 
     bool init(SDL_Renderer* renderer);
