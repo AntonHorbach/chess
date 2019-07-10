@@ -8,17 +8,21 @@
 #include "field.h"
 #include "player.h"
 #include "../tools/tools.h"
+#include "menu/menu.h"
 
 class Game {
     SDL_Window* window;
     SDL_Renderer* renderer;
 
+    Menu menu;
     Field field;
 
     Player white_player;
     Player black_player;
 
     bool isRunning;
+
+    bool initMenu();
 
     void render();
     void handleEvents();

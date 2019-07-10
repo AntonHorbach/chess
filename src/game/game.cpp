@@ -12,6 +12,11 @@ bool Game::init(const char* title, int x, int y, int width, int height, bool ful
         return false;
     }
 
+    if(TTF_Init() != 0) {
+        std::cout << "Bad ttf init: " << TTF_GetError() << '\n';
+        return false;
+    }
+
     window = SDL_CreateWindow(title, x, y, width, height, flags);
     if(window == nullptr) {
         std::cout << "The window has not been created: " << SDL_GetError() << '\n';
@@ -32,8 +37,26 @@ bool Game::init(const char* title, int x, int y, int width, int height, bool ful
         return false;
     }
 
+    if(!initMenu()) {
+        return false;
+    }
+
     isRunning = true;
     SDL_SetRenderDrawColor(renderer, 123, 123, 123, 255);
+
+    return true;
+}
+
+bool Game::initMenu() {
+    if(!menu.init(renderer, 480, 0, 160, 480, "./assets/menu.png")) {
+        return false;
+    }
+
+    Button button;
+    button.init(renderer, "New game", 12, nullptr);
+
+    menu.pushButton(std::move(button));
+    menu.setButtonsTextures("./assets/buttonON.png", "./assets/button.png");
 
     return true;
 }
@@ -193,6 +216,7 @@ void Game::render() {
     field.render(renderer);
     white_player.render();
     black_player.render();
+    menu.render();
 
     SDL_RenderPresent(renderer);
 }
