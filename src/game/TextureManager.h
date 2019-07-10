@@ -6,6 +6,7 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 class TextureManager {
 private:
@@ -15,6 +16,8 @@ private:
 
 public:
     static std::shared_ptr<SDL_Texture> loadTexture(SDL_Renderer* renderer, const char* path_to_sprite);
+    static std::shared_ptr<SDL_Texture> loadTextTexture(SDL_Renderer* renderer, const char* text,
+                                                        size_t font_size, SDL_Color color);
 };
 
 #endif
