@@ -67,6 +67,9 @@ namespace tools {
                 int x2, int y2,
                 const std::vector<std::pair<int, int>>& source
     );
+
+    template <typename T>
+    bool less_than(const std::initializer_list<T>& values, const T& value_to_compare);
 }
 
 template <typename T1, typename T2>
@@ -155,6 +158,17 @@ std::pair<T1, T2>& operator-=(std::pair<T1, T2>& left, const std::pair<T1, T2>& 
 template <typename T1, typename T2>
 std::pair<T1, T2>& operator-(std::pair<T1, T2> left, const std::pair<T1, T2>& right) {
     return left -= right;
+}
+
+namespace tools {
+    template <typename T>
+    bool less_than(const std::initializer_list<T>& values, const T& value_to_compare) {
+        for(const T& value : values) {
+            if(value >= value_to_compare) return false;
+        }
+
+        return true;
+    }
 }
 
 #endif
