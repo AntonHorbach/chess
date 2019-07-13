@@ -20,6 +20,10 @@ class Game {
     Player white_player;
     Player black_player;
 
+    int halfMove = 0;
+    Player* current_player = &white_player;
+    Player* another_player = &black_player;    
+
     bool isRunning;
 
     bool initMenu();
@@ -28,8 +32,10 @@ class Game {
     void handleEvents();
     void update();
 
-    bool checkmate(Player* current_player, Player* another_player);
-    bool pat(Player* current_player);
+    void handleFieldEvent(SDL_Event* event);
+
+    bool checkmate();
+    bool pat();
 
 public:
     Game();

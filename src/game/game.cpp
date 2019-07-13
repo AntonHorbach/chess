@@ -61,7 +61,7 @@ bool Game::initMenu() {
     return true;
 }
 
-bool Game::checkmate(Player* current_player, Player* another_player) {
+bool Game::checkmate() {
     const Figure* enemy_king = another_player->getFigure(FT::KING);
 
     if(enemy_king->isDead()) return true;
@@ -116,7 +116,7 @@ bool Game::checkmate(Player* current_player, Player* another_player) {
     return true;
 }
 
-bool Game::pat(Player* current_player) {
+bool Game::pat() {
     for(const auto& figure : current_player->getFigures()) {
         if(!figure.isDead() && figure.getType() != FT::KING) {
             return false;
@@ -132,82 +132,93 @@ bool Game::pat(Player* current_player) {
     return false;
 }
 
-void Game::handleEvents() {
-    static int halfMove = 0;
-    Player* current_player = (halfMove % 2 == 0) ? &white_player : &black_player;
-    Player* another_player = (current_player == &white_player) ? &black_player : &white_player;
+void Game::handleFieldEvent(SDL_Event* event) {
+    switch(event->type) {
+    case SDL_MOUSEBUTTONDOWN: {
+        if(current_player->handleEvents(event)){
+            current_player->update(another_player);
 
-    if(pat(current_player)) {
-        std::string message(*current_player);
-        std::cout << "It's pat for " + message << '\n';
+            field.changeSquares(
+                event->button.x / (480 / 8), event->button.y / (480 / 8),
+                current_player->getFigure(event->button.x, event->button.y)->getAvailableMoves()
+            );
 
-        isRunning = false;
-        return;
+            field.changeSquares(
+                event->button.x / (480 / 8), event->button.y / (480 / 8),
+                current_player->getFigure(event->button.x, event->button.y)->getAvailableAttacks(),
+                SQUARE::ATTACK_SQUARE
+            );
+        }
+        break;
     }
+    case SDL_MOUSEBUTTONUP: {
+        if(current_player->handleEvents(event)) {
+            if(current_player->isAttack() &&
+                another_player->killIfFind(event->button.x, event->button.y)) {
+                ++halfMove;
+            }
+            else if(!current_player->isMove()) {
+                current_player->rollback();
+            }
+            else {
+                ++halfMove;
+            }
+            
+            current_player->update(another_player);
+            another_player->update(current_player);
+        }
 
+        field.resetSquares();
+        break;
+    }
+    case SDL_MOUSEMOTION: {
+        current_player->handleEvents(event);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void Game::handleEvents() {
     SDL_Event event;
 
     while(SDL_PollEvent(&event)) {
-        switch(event.type) {
-        case SDL_QUIT:
+        if(event.type == SDL_QUIT) {
             isRunning = false;
-            break;
-        case SDL_MOUSEBUTTONDOWN: {
-            if(current_player->handleEvents(&event)){
-                current_player->update(another_player);
-
-                field.changeSquares(
-                    event.button.x / (480 / 8), event.button.y / (480 / 8),
-                    current_player->getFigure(event.button.x, event.button.y)->getAvailableMoves()
-                );
-
-                field.changeSquares(
-                    event.button.x / (480 / 8), event.button.y / (480 / 8),
-                    current_player->getFigure(event.button.x, event.button.y)->getAvailableAttacks(),
-                    SQUARE::ATTACK_SQUARE
-                );
+        }
+        else if(event.button.x >=0 && event.button.x < 480) {
+            if(white_player.getStatus() == STATUS::NONE && black_player.getStatus() == STATUS::NONE) {
+                handleFieldEvent(&event);
             }
-            break;
         }
-        case SDL_MOUSEBUTTONUP: {
-            if(current_player->handleEvents(&event)) {
-                if(current_player->isAttack() &&
-                    another_player->killIfFind(event.button.x, event.button.y)) {
-                    ++halfMove;
-                }
-                else if(!current_player->isMove()) {
-                    current_player->rollback();
-                }
-                else {
-                    ++halfMove;
-                }
-                
-                current_player->update(another_player);
-                another_player->update(current_player);
-                if(checkmate(current_player, another_player)) {
-                    std::string message(*current_player);
-                    std::cout << message + " did checkmate.\n";
-
-                    isRunning = false;
-                    return;
-                }
-            }
-
-            field.resetSquares();
-            break;
-        }
-        case SDL_MOUSEMOTION: {
-            current_player->handleEvents(&event);
-            break;
-        }
-        default:
-            break;
+        else {
+            menu.handleEvents(&event);
         }
     }
 }
 
 void Game::update() {
+    if(white_player.getStatus() != STATUS::NONE || black_player.getStatus() != STATUS::NONE) {
+        return;
+    }
+    else if(checkmate()) {
+        std::string message(*current_player);
+        std::cout << message + " did checkmate.\n";
 
+        another_player->setStatus(STATUS::CHECKMATE);
+    }
+    else {
+        current_player = (halfMove % 2 == 0 ? &white_player : &black_player);
+        another_player = (current_player == &white_player ? &black_player : &white_player);
+
+        if(pat()) {
+            std::string message(*current_player);
+            std::cout << "It's pat for " + message << '\n';
+
+            current_player->setStatus(STATUS::PAT);
+        }
+    }
 }
 
 void Game::render() {
