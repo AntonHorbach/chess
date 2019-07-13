@@ -14,6 +14,10 @@ using Color = bool;
 #define WHITE true
 #define BLACK false
 
+enum class STATUS: size_t {
+    CHECKMATE = 0, PAT, NONE
+};
+
 class Player {
     std::vector<Figure> figures;
 
@@ -21,6 +25,7 @@ class Player {
     std::stack<size_t> futures;
 
     Color color;
+    STATUS status = STATUS::NONE;
 
 public:
     Player(Color);
@@ -33,6 +38,10 @@ public:
     bool killIfFind(size_t x, size_t y);
     bool isMove() const;
     bool isAttack() const;
+    
+    STATUS getStatus() const;
+    void setStatus(STATUS status);
+
     void rollback();
     void reset();
 

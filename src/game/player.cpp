@@ -283,6 +283,14 @@ bool Player::isAttack() const {
     return figures[prevs.top()].isAttack();
 }
 
+STATUS Player::getStatus() const {
+    return status;
+}
+
+void Player::setStatus(STATUS status) {
+    this->status = status;
+}
+
 const Figure* Player::getFigure(size_t x, size_t y) const {
     x = x / (480 / 8);
     y = y / (480 / 8);
