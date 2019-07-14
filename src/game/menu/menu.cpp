@@ -8,11 +8,9 @@ Menu::Menu(int buttons_num) {
 
 void Menu::normalize() {
     for(size_t i = 0; i < buttons.size(); ++i) {
-        //buttons[i].setWidthAndHeight(destrect.w - 30, destrect.h / buttons.size() - 30);
-        buttons[i].setWidthAndHeight(120, 50);
-        //buttons[i].setX_Y(destrect.x + 10,
-        //                destrect.h / buttons.size() * i + destrect.y);
-        buttons[i].setX_Y(490, 20);
+        buttons[i].setWidthAndHeight(destrect.w - 30, destrect.h / buttons.size() - 30);
+        buttons[i].setX_Y(destrect.x + 10,
+                        destrect.h / buttons.size() * i + destrect.y + 15);
     }
 }
 

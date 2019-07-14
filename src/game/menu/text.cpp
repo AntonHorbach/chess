@@ -7,7 +7,7 @@ Text::Text(SDL_Renderer* renderer, const char* text, int font_size, SDL_Color co
 
     srcrect.x = srcrect.y = 0;
     srcrect.h = destrect.h = font_size + 10;
-    destrect.w = srcrect.w = this->text.length() * 10;
+    destrect.w = srcrect.w = this->text.length() * 12;
 }
 
 void Text::setX_Y(int x, int y) {

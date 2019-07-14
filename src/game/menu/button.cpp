@@ -36,7 +36,7 @@ void Button::setX_Y(int x, int y) {
     destrect.x = x;
     destrect.y = y;
 
-    text.setX_Y(x + 5, y + 5);
+    text.setX_Y(x + 15, y + 15);
 }
 
 void Button::setWidthAndHeight(int width, int height) {
