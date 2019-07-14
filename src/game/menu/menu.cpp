@@ -86,12 +86,12 @@ void Menu::render() {
 }
 
 void Menu::handleEvents(SDL_Event* event) {
-    switch(event->type) {
-    case SDL_MOUSEBUTTONDOWN:
-        break;
-    case SDL_MOUSEBUTTONUP:
-        break;
-    case SDL_MOUSEMOTION:
-        break;
+    for(Button& button : buttons) {
+        if(event->button.x <= button.getX() + button.getWidth() && event->button.x >= button.getX()
+            && event->button.y <= button.getY() + button.getHeight() && event->button.y >= button.getY())
+        {
+            button.handleEvents(event);
+            return;
+        }
     }
 }
