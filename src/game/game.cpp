@@ -53,9 +53,22 @@ bool Game::initMenu() {
     }
 
     Button button;
-    button.init(renderer, "New game", 12, nullptr);
 
+    button.init(renderer, "New game", 18, nullptr);
     menu.pushButton(std::move(button));
+
+    button.init(renderer, "Surrender", 18, nullptr);
+    menu.pushButton(std::move(button));
+
+    button.init(renderer, "Back", 18, nullptr);
+    menu.pushButton(std::move(button));
+
+    button.init(renderer, "Forward", 18, nullptr);
+    menu.pushButton(std::move(button));
+
+    button.init(renderer, "Exit", 18, nullptr);
+    menu.pushButton(std::move(button));
+
     menu.setButtonsTextures("./assets/buttonON.png", "./assets/button.png");
 
     return true;
