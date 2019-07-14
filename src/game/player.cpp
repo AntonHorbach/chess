@@ -252,14 +252,15 @@ bool Player::killIfFind(size_t x, size_t y) {
 }
 
 void Player::reset() {
+    status = STATUS::NONE;
+
     int step = (color == BLACK ? -1 : 1);
-    size_t begin_x = (color == BLACK ? 7 : 0);
-    size_t x = begin_x - step;
+    size_t x = 0;
     size_t y = (color == BLACK ? 0 : 7);
 
-    for(size_t i = ind_FT::LEFT_ROOK; i <= ind_FT::PAWN_8; ++i, x += step) {
+    for(size_t i = ind_FT::LEFT_ROOK; i <= ind_FT::PAWN_8; ++i, ++x) {
         if(i == ind_FT::PAWN_1) {
-            x = begin_x;
+            x = 0;
             y -= step;
         }
 
