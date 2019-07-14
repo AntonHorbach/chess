@@ -9,6 +9,8 @@
 #include "../TextureManager.h"
 #include "text.h"
 
+class Game;
+
 class Button {
     std::shared_ptr<SDL_Texture> buttonOFF;
     std::shared_ptr<SDL_Texture> buttonON;
@@ -19,7 +21,9 @@ class Button {
     SDL_Rect srcrect;
     SDL_Rect destrect;
 
-    void(*action)(void);
+    Game* game;
+
+    void (Game::*action)();
     bool active = false;
 
 public:
@@ -30,8 +34,8 @@ public:
     int getWidth() const;
     int getHeight() const;
 
-    bool init(SDL_Renderer* renderer, const char* text, int text_size,
-                void(*action)(void));
+    bool init(Game* game, SDL_Renderer* renderer, const char* text,
+                int text_size, void(Game::*action)(void));
     void setX_Y(int x, int y);
     void setWidthAndHeight(int width, int height);
     bool setTextures(const std::shared_ptr<SDL_Texture>& buttonON,

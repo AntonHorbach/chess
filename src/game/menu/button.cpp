@@ -2,10 +2,13 @@
 
 Button::Button() {}
 
-bool Button::init(SDL_Renderer* renderer, const char* text, int text_size, void(*action)(void))
+bool Button::init(Game* game, SDL_Renderer* renderer, const char* text, int text_size,
+                void(Game::*action)(void))
 {
+    if(!game || !renderer || !text || !action) return false;
     if(text_size < 0) return false;
 
+    this->game = game;
     this->renderer = renderer;
 
     this->text = Text(renderer, text, text_size, {0, 0, 0, 0});
@@ -70,7 +73,7 @@ void Button::handleEvents(SDL_Event* event) {
         active = true;
         break;
     case SDL_MOUSEBUTTONUP: {
-        if(action) action();
+        if(action) (game->*action)();
         active = false;
         break;
     }

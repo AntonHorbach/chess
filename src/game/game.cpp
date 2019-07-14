@@ -54,24 +54,56 @@ bool Game::initMenu() {
 
     Button button;
 
-    button.init(renderer, "New game", 18, nullptr);
+    button.init(this, renderer, "New game", 18, &Game::newGame);
     menu.pushButton(std::move(button));
 
-    button.init(renderer, "Surrender", 18, nullptr);
+    button.init(this, renderer, "Surrender", 18, &Game::surrender);
     menu.pushButton(std::move(button));
 
-    button.init(renderer, "Back", 18, nullptr);
+    button.init(this, renderer, "Back", 18, &Game::back);
     menu.pushButton(std::move(button));
 
-    button.init(renderer, "Forward", 18, nullptr);
-    menu.pushButton(std::move(button));
-
-    button.init(renderer, "Exit", 18, nullptr);
+    button.init(this, renderer, "Exit", 18, &Game::exit);
     menu.pushButton(std::move(button));
 
     menu.setButtonsTextures("./assets/buttonON.png", "./assets/button.png");
 
     return true;
+}
+
+void Game::newGame() {
+    halfMove = 0;
+    current_player = &white_player;
+    another_player = &black_player;
+
+    field.resetSquares();
+    white_player.reset();
+    black_player.reset();
+}
+
+void Game::surrender() {
+    std::string player(*current_player);
+
+    std::cout << player + " resigned\n";
+
+    current_player->setStatus(STATUS::CHECKMATE);
+}
+
+void Game::back() {
+    if(halfMove == 0) return;
+    else if(halfMove < 2) {
+        white_player.rollback();
+        --halfMove;
+    }
+    else {
+        another_player->rollback();
+        current_player->rollback();
+        halfMove -= 2;
+    }
+}
+
+void Game::exit() {
+    isRunning = false;
 }
 
 bool Game::checkmate() {

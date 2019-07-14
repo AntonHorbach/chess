@@ -37,6 +37,11 @@ class Game {
     bool checkmate();
     bool pat();
 
+    void newGame();
+    void surrender();
+    void back();
+    void exit();
+
 public:
     Game();
     ~Game();
