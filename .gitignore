@@ -1,4 +1,5 @@
 /build/
+/Testing/
 /.vscode/
 .directory
 *.code-workspace
