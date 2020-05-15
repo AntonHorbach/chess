@@ -1,60 +1,75 @@
 #include "figure.h"
 
-Figure::Figure() {}
+Figure::Figure()
+{
+}
 
-Figure::Figure(size_t _x, size_t _y, FIGURES_TYPE _type)
-    : x(_x), y(_y), type(_type)
-{}
+Figure::Figure(size_t _x, size_t _y, FIGURES_TYPE _type): x(_x), y(_y), type(_type)
+{
+}
 
-void Figure::setX_Y(size_t x, size_t y) {
+void Figure::setX_Y(size_t x, size_t y)
+{
     this->x = x;
     this->y = y;
-    
+
     dstrect.x = x * (480 / 8);
     dstrect.y = y * (480 / 8);
 }
 
-size_t Figure::getX() const {
+size_t Figure::getX() const
+{
     return x;
 }
 
-size_t Figure::getY() const {
+size_t Figure::getY() const
+{
     return y;
 }
 
-FT Figure::getType() const {
+FT Figure::getType() const
+{
     return type;
 }
 
-const std::vector<MOVE>& Figure::getMoves() const {
+const std::vector<MOVE>& Figure::getMoves() const
+{
     return moves;
 }
 
-const std::vector<MOVE>& Figure::getAttacks() const {
+const std::vector<MOVE>& Figure::getAttacks() const
+{
     return attacks;
 }
 
-const std::vector<MOVE>& Figure::getAvailableMoves() const {
+const std::vector<MOVE>& Figure::getAvailableMoves() const
+{
     return availableMoves;
 }
 
-const std::vector<MOVE>& Figure::getAvailableAttacks() const {
+const std::vector<MOVE>& Figure::getAvailableAttacks() const
+{
     return availableAttacks;
 }
 
-void Figure::setAttacks(const std::vector<MOVE>& attacks) {
-    for(size_t i = 0; i < attacks.size(); ++i) {
+void Figure::setAttacks(const std::vector<MOVE>& attacks)
+{
+    for(size_t i = 0; i < attacks.size(); ++i)
+    {
         this->attacks.push_back(attacks[i]);
     }
 }
 
-void Figure::setMoves(const std::vector<MOVE>& moves) {
-    for(size_t i = 0; i < moves.size(); ++i) {
+void Figure::setMoves(const std::vector<MOVE>& moves)
+{
+    for(size_t i = 0; i < moves.size(); ++i)
+    {
         this->moves.push_back(moves[i]);
     }
 }
 
-void Figure::kill() {
+void Figure::kill()
+{
     prevs.push({x, y});
     futures = std::stack<MOVE>();
 
@@ -62,7 +77,8 @@ void Figure::kill() {
     dead = true;
 }
 
-void Figure::reset(size_t x, size_t y) {
+void Figure::reset(size_t x, size_t y)
+{
     setX_Y(x, y);
     dead = false;
 
@@ -70,43 +86,50 @@ void Figure::reset(size_t x, size_t y) {
     futures = std::stack<MOVE>();
 }
 
-bool Figure::isDead() const {
+bool Figure::isDead() const
+{
     return dead;
 }
 
-bool Figure::isDragging() const {
+bool Figure::isDragging() const
+{
     return dragging;
 }
 
-bool Figure::isMove() const {
+bool Figure::isMove() const
+{
     int dx = (x - prevs.top().first);
     int dy = (y - prevs.top().second);
 
-    if(std::find(std::begin(moves), std::end(moves), MOVE(dx, dy)) != std::end(moves)) {
+    if(std::find(std::begin(moves), std::end(moves), MOVE(dx, dy)) != std::end(moves))
+    {
         return true;
     }
 
     return false;
 }
 
-bool Figure::isAttack() const {
+bool Figure::isAttack() const
+{
     int dx = (x - prevs.top().first);
     int dy = (y - prevs.top().second);
 
-    if(std::find(std::begin(attacks), std::end(attacks), MOVE(dx, dy)) != std::end(attacks)) {
+    if(std::find(std::begin(attacks), std::end(attacks), MOVE(dx, dy)) != std::end(attacks))
+    {
         return true;
     }
 
     return false;
 }
 
-bool Figure::init(SDL_Renderer* renderer, const std::string& path_to_sprite) {
+bool Figure::init(SDL_Renderer* renderer, const std::string& path_to_sprite)
+{
     this->renderer = renderer;
     texture = TextureManager::loadTexture(renderer, path_to_sprite.c_str());
 
-    if(texture == nullptr) {
-        std::cout << "texture for figure can't be load: "
-                  << SDL_GetError() << '\n';
+    if(texture == nullptr)
+    {
+        std::cout << "texture for figure can't be load: " << SDL_GetError() << '\n';
 
         return false;
     }
@@ -116,39 +139,45 @@ bool Figure::init(SDL_Renderer* renderer, const std::string& path_to_sprite) {
     dstrect.h = dstrect.w = 64;
     dstrect.x = x * (480 / 8);
     dstrect.y = y * (480 / 8);
-    
+
     return true;
 }
 
-void Figure::updateAvailableMoves(std::vector<MOVE>&& moves) {
+void Figure::updateAvailableMoves(std::vector<MOVE>&& moves)
+{
     availableMoves = moves;
 }
 
-void Figure::updateAvailableAttacks(std::vector<MOVE>&& attacks) {
+void Figure::updateAvailableAttacks(std::vector<MOVE>&& attacks)
+{
     availableAttacks = attacks;
 }
 
-void Figure::render() {
+void Figure::render()
+{
     SDL_RenderCopy(renderer, texture.get(), &srcrect, &dstrect);
 }
 
-void Figure::onPressed(SDL_Event* event) {
+void Figure::onPressed(SDL_Event* event)
+{
     dx = -(dstrect.x - event->button.x);
     dy = -(dstrect.y - event->button.y);
     dragging = true;
 }
 
-bool Figure::onReleased(SDL_Event* event) {
+bool Figure::onReleased(SDL_Event* event)
+{
     dragging = false;
     bool flag = false;
 
-    const int move_dx = - (x - event->button.x / (480 / 8));
-    const int move_dy = - (y - event->button.y / (480 / 8));
+    const int move_dx = -(x - event->button.x / (480 / 8));
+    const int move_dy = -(y - event->button.y / (480 / 8));
 
-    if(std::find(std::begin(availableMoves), std::end(availableMoves),
-        MOVE(move_dx, move_dy)) != std::end(availableMoves) ||
-       std::find(std::begin(availableAttacks), std::end(availableAttacks),
-        MOVE(move_dx, move_dy)) != std::end(availableAttacks))
+    if(std::find(std::begin(availableMoves), std::end(availableMoves), MOVE(move_dx, move_dy))
+       != std::end(availableMoves)
+       || std::find(std::begin(availableAttacks),
+                    std::end(availableAttacks),
+                    MOVE(move_dx, move_dy)) != std::end(availableAttacks))
     {
         prevs.push({x, y});
         futures = std::stack<MOVE>();
@@ -164,8 +193,10 @@ bool Figure::onReleased(SDL_Event* event) {
     return flag;
 }
 
-void Figure::onMotion(SDL_Event* event) {
-    if(dragging) {
+void Figure::onMotion(SDL_Event* event)
+{
+    if(dragging)
+    {
         dstrect.x += dx;
         dstrect.y += dy;
     }
@@ -174,24 +205,27 @@ void Figure::onMotion(SDL_Event* event) {
     dy = event->button.y - dstrect.y;
 }
 
-bool Figure::handleEvents(SDL_Event* event) {
-    switch(event->type) {
-        case SDL_MOUSEBUTTONDOWN:
-            onPressed(event);
-            break;
-        case SDL_MOUSEBUTTONUP:
-            return onReleased(event);
-        case SDL_MOUSEMOTION:
-            onMotion(event);
-            break;
-        default:
-            break;
+bool Figure::handleEvents(SDL_Event* event)
+{
+    switch(event->type)
+    {
+    case SDL_MOUSEBUTTONDOWN:
+        onPressed(event);
+        break;
+    case SDL_MOUSEBUTTONUP:
+        return onReleased(event);
+    case SDL_MOUSEMOTION:
+        onMotion(event);
+        break;
+    default:
+        break;
     }
 
     return true;
 }
 
-void Figure::rollback() {
+void Figure::rollback()
+{
     setX_Y(prevs.top().first, prevs.top().second);
     futures.push(prevs.top());
     prevs.pop();

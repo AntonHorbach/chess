@@ -1,7 +1,7 @@
 #include "text.h"
 
-Text::Text(SDL_Renderer* renderer, const char* text, int font_size, SDL_Color color)
-    :renderer(renderer), text(text), font_size(font_size), color(color)
+Text::Text(SDL_Renderer* renderer, const char* text, int font_size, SDL_Color color): renderer(
+        renderer), text(text), font_size(font_size), color(color)
 {
     texture = TextureManager::loadTextTexture(renderer, text, font_size, color);
 
@@ -10,11 +10,13 @@ Text::Text(SDL_Renderer* renderer, const char* text, int font_size, SDL_Color co
     destrect.w = srcrect.w = this->text.length() * 12;
 }
 
-void Text::setX_Y(int x, int y) {
+void Text::setX_Y(int x, int y)
+{
     destrect.x = x;
     destrect.y = y;
 }
 
-void Text::render() {
+void Text::render()
+{
     SDL_RenderCopy(renderer, texture.get(), &srcrect, &destrect);
 }

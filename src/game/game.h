@@ -10,7 +10,8 @@
 #include "../tools/tools.h"
 #include "menu/menu.h"
 
-class Game {
+class Game
+{
     SDL_Window* window;
     SDL_Renderer* renderer;
 
@@ -22,7 +23,7 @@ class Game {
 
     int halfMove = 0;
     Player* current_player = &white_player;
-    Player* another_player = &black_player;    
+    Player* another_player = &black_player;
 
     bool isRunning;
 

@@ -5,15 +5,20 @@ Field::Field()
     resetSquares();
 }
 
-void Field::changeSquares(size_t x, size_t y,
-                          const std::vector<std::pair<int, int>>& squares,
-                          SQUARE square_type)
+void Field::changeSquares(
+        size_t x, size_t y, const std::vector<std::pair<int, int>>& squares, SQUARE square_type)
 {
-    if(square_type != SQUARE::MOVE_SQUARE && square_type != SQUARE::ATTACK_SQUARE) return;
+    if(square_type != SQUARE::MOVE_SQUARE && square_type != SQUARE::ATTACK_SQUARE)
+    {
+        return;
+    }
 
-    for(const auto& square : squares) {
-        if(x + square.first < 0 || x + square.first >= SIZE
-            || y + square.second < 0 || y + square.second >=SIZE)
+    for(const auto& square : squares)
+    {
+        if(x + square.first < 0
+           || x + square.first >= SIZE
+           || y + square.second < 0
+           || y + square.second >= SIZE)
         {
             continue;
         }
@@ -22,22 +27,29 @@ void Field::changeSquares(size_t x, size_t y,
     }
 }
 
-void Field::resetSquares() {
-    for(size_t i = 0; i < SIZE; ++i){
-        for(size_t j = 0; j < SIZE; ++j){
-            field[i][j] = (i + j)%2 == 0 ? (size_t)SQUARE::WHITE_SQUARE : (size_t)SQUARE::BLACK_SQUARE;
+void Field::resetSquares()
+{
+    for(size_t i = 0; i < SIZE; ++i)
+    {
+        for(size_t j = 0; j < SIZE; ++j)
+        {
+            field[i][j] =
+                    (i + j) % 2 == 0 ? (size_t)SQUARE::WHITE_SQUARE : (size_t)SQUARE::BLACK_SQUARE;
         }
     }
 }
 
-bool Field::init(SDL_Renderer* renderer) {
+bool Field::init(SDL_Renderer* renderer)
+{
     white_square = TextureManager::loadTexture(renderer, "./assets/textures/white_square.png");
     black_square = TextureManager::loadTexture(renderer, "./assets/textures/black_square.png");
     move_square = TextureManager::loadTexture(renderer, "./assets/textures/move_square.png");
     attack_square = TextureManager::loadTexture(renderer, "./assets/textures/attack_square.png");
 
-    if(white_square == nullptr || black_square == nullptr || move_square == nullptr
-        || attack_square == nullptr)
+    if(white_square == nullptr
+       || black_square == nullptr
+       || move_square == nullptr
+       || attack_square == nullptr)
     {
         std::cout << "Can't load textures: " << SDL_GetError() << std::endl;
         return false;
@@ -56,16 +68,20 @@ bool Field::init(SDL_Renderer* renderer) {
     return true;
 }
 
-void Field::render(SDL_Renderer* renderer) {
+void Field::render(SDL_Renderer* renderer)
+{
     square_dstrect.y = 0;
 
-    for(size_t i = 0; i < SIZE; ++i) {
+    for(size_t i = 0; i < SIZE; ++i)
+    {
         square_dstrect.x = 0;
 
-        for(size_t j = 0; j < SIZE; ++j) {
+        for(size_t j = 0; j < SIZE; ++j)
+        {
             std::shared_ptr<SDL_Texture> cur_texture = nullptr;
 
-            switch((SQUARE)field[i][j]) {
+            switch((SQUARE)field[i][j])
+            {
             case SQUARE::WHITE_SQUARE:
                 cur_texture = white_square;
                 break;
@@ -89,12 +105,16 @@ void Field::render(SDL_Renderer* renderer) {
     }
 }
 
-void Field::update() {
+void Field::update()
+{
 
 }
 
-void Field::handleEvents(SDL_Event* event) {
+void Field::handleEvents(SDL_Event* event)
+{
 
 }
 
-Field::~Field() {}
+Field::~Field()
+{
+}

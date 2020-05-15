@@ -2,12 +2,13 @@
 
 std::map<std::string, std::shared_ptr<SDL_Texture>> TextureManager::textures;
 
-std::shared_ptr<SDL_Texture> TextureManager::make_shared_texture(SDL_Texture* texture) {
+std::shared_ptr<SDL_Texture> TextureManager::make_shared_texture(SDL_Texture* texture)
+{
     return {texture, SDL_DestroyTexture};
 }
 
-std::shared_ptr<SDL_Texture> TextureManager::loadTexture(SDL_Renderer* renderer,
-                                                        const std::string& path_to_sprite)
+std::shared_ptr<SDL_Texture> TextureManager::loadTexture(
+        SDL_Renderer* renderer, const std::string& path_to_sprite)
 {
     if(textures.find(path_to_sprite) != std::end(textures))
     {
@@ -23,13 +24,18 @@ std::shared_ptr<SDL_Texture> TextureManager::loadTexture(SDL_Renderer* renderer,
     return textures[path_to_sprite];
 }
 
-std::shared_ptr<SDL_Texture> TextureManager::loadTextTexture(SDL_Renderer* renderer, const std::string& text,
-                                                        size_t font_size, SDL_Color color)
+std::shared_ptr<SDL_Texture> TextureManager::loadTextTexture(
+        SDL_Renderer* renderer, const std::string& text, size_t font_size, SDL_Color color)
 {
-    std::string key = std::string(text) + std::to_string(font_size) + std::to_string(color.a)
-                        + std::to_string(color.b) + std::to_string(color.g) + std::to_string(color.r);
+    std::string key = std::string(text)
+                      + std::to_string(font_size)
+                      + std::to_string(color.a)
+                      + std::to_string(color.b)
+                      + std::to_string(color.g)
+                      + std::to_string(color.r);
 
-    if(textures.find(key) != std::end(textures)) {
+    if(textures.find(key) != std::end(textures))
+    {
         return textures[key];
     }
 

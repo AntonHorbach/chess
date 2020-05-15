@@ -11,7 +11,8 @@
 
 class Game;
 
-class Button {
+class Button
+{
     std::shared_ptr<SDL_Texture> buttonOFF;
     std::shared_ptr<SDL_Texture> buttonON;
     Text text;
@@ -34,12 +35,17 @@ public:
     int getWidth() const;
     int getHeight() const;
 
-    bool init(Game* game, SDL_Renderer* renderer, const char* text,
-                int text_size, void(Game::*action)(void));
+    bool init(
+            Game* game,
+            SDL_Renderer* renderer,
+            const char* text,
+            int text_size,
+            void(Game::*action)(void));
     void setX_Y(int x, int y);
     void setWidthAndHeight(int width, int height);
-    bool setTextures(const std::shared_ptr<SDL_Texture>& buttonON,
-                    const std::shared_ptr<SDL_Texture>& button_off);
+    bool setTextures(
+            const std::shared_ptr<SDL_Texture>& buttonON,
+            const std::shared_ptr<SDL_Texture>& button_off);
 
     void render();
     void handleEvents(SDL_Event* event);

@@ -10,7 +10,8 @@
 #include "../../tools/tools.h"
 #include "button.h"
 
-class Menu {
+class Menu
+{
     int dx, dy;
     SDL_Rect srcrect;
     SDL_Rect destrect;
@@ -25,10 +26,16 @@ public:
     Menu();
     Menu(int buttons_num);
 
-    bool init(SDL_Renderer* renderer, int x, int y, int width, int height,
-                const std::string& path_to_menu_sprite);
+    bool init(
+            SDL_Renderer* renderer,
+            int x,
+            int y,
+            int width,
+            int height,
+            const std::string& path_to_menu_sprite);
 
-    bool setButtonsTextures(const std::string& buttonOn_sprite, const std::string& buttonOFF_sprite);
+    bool
+    setButtonsTextures(const std::string& buttonOn_sprite, const std::string& buttonOFF_sprite);
     bool setMenuTexture(const std::string& path_to_sprite);
 
     void pushButton(Button&& button);

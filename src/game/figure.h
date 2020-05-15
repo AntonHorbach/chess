@@ -11,11 +11,10 @@
 
 #include "TextureManager.h"
 
-enum class FIGURES_TYPE: size_t {
-    LEFT_ROOK = 0, LEFT_HORSE, LEFT_ELEPHANT, QUEEN, KING,
-    RIGHT_ELEPHANT, RIGHT_HORSE, RIGHT_ROOK,
-    PAWN_1, PAWN_2, PAWN_3, PAWN_4, PAWN_5,
-    PAWN_6, PAWN_7, PAWN_8 = 15
+enum class FIGURES_TYPE: size_t
+{
+    LEFT_ROOK = 0, LEFT_HORSE, LEFT_ELEPHANT, QUEEN, KING, RIGHT_ELEPHANT, RIGHT_HORSE, RIGHT_ROOK,
+    PAWN_1, PAWN_2, PAWN_3, PAWN_4, PAWN_5, PAWN_6, PAWN_7, PAWN_8 = 15
 };
 
 using FT = FIGURES_TYPE;
@@ -24,7 +23,8 @@ using POS = std::pair<int, int>;
 
 #define ind_FT (size_t)FT
 
-class Figure {
+class Figure
+{
     SDL_Renderer* renderer = nullptr;
     std::shared_ptr<SDL_Texture> texture = nullptr;
     SDL_Rect srcrect;
@@ -32,7 +32,7 @@ class Figure {
 
     std::stack<MOVE> prevs;
     std::stack<MOVE> futures;
-    
+
     size_t x;
     size_t y;
     int dx = 0;

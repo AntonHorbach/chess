@@ -9,7 +9,8 @@
 
 #include "../TextureManager.h"
 
-class Text {
+class Text
+{
     std::string text;
 
     SDL_Renderer* renderer;

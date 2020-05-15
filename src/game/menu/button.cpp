@@ -1,12 +1,24 @@
 #include "button.h"
 
-Button::Button() {}
-
-bool Button::init(Game* game, SDL_Renderer* renderer, const char* text, int text_size,
-                void(Game::*action)(void))
+Button::Button()
 {
-    if(!game || !renderer || !text || !action) return false;
-    if(text_size < 0) return false;
+}
+
+bool Button::init(
+        Game* game,
+        SDL_Renderer* renderer,
+        const char* text,
+        int text_size,
+        void(Game::*action)(void))
+{
+    if(!game || !renderer || !text || !action)
+    {
+        return false;
+    }
+    if(text_size < 0)
+    {
+        return false;
+    }
 
     this->game = game;
     this->renderer = renderer;
@@ -19,38 +31,47 @@ bool Button::init(Game* game, SDL_Renderer* renderer, const char* text, int text
     return true;
 }
 
-int Button::getX() const {
+int Button::getX() const
+{
     return destrect.x;
 }
 
-int Button::getY() const {
+int Button::getY() const
+{
     return destrect.y;
 }
 
-int Button::getHeight() const {
+int Button::getHeight() const
+{
     return destrect.h;
 }
 
-int Button::getWidth() const {
+int Button::getWidth() const
+{
     return destrect.w;
 }
 
-void Button::setX_Y(int x, int y) {
+void Button::setX_Y(int x, int y)
+{
     destrect.x = x;
     destrect.y = y;
 
     text.setX_Y(x + 15, y + 15);
 }
 
-void Button::setWidthAndHeight(int width, int height) {
+void Button::setWidthAndHeight(int width, int height)
+{
     srcrect.h = destrect.h = height;
     srcrect.w = destrect.w = width;
 }
 
-bool Button::setTextures(const std::shared_ptr<SDL_Texture>& buttonON,
-                        const std::shared_ptr<SDL_Texture>& buttonOff)
+bool Button::setTextures(
+        const std::shared_ptr<SDL_Texture>& buttonON, const std::shared_ptr<SDL_Texture>& buttonOff)
 {
-    if(buttonON == nullptr || buttonOff == nullptr) return false;
+    if(buttonON == nullptr || buttonOff == nullptr)
+    {
+        return false;
+    }
 
     this->buttonON = buttonON;
     this->buttonOFF = buttonOff;
@@ -58,22 +79,33 @@ bool Button::setTextures(const std::shared_ptr<SDL_Texture>& buttonON,
     return true;
 }
 
-void Button::render() {
-    if(active) 
+void Button::render()
+{
+    if(active)
+    {
         SDL_RenderCopy(renderer, buttonON.get(), &srcrect, &destrect);
+    }
     else
+    {
         SDL_RenderCopy(renderer, buttonOFF.get(), &srcrect, &destrect);
+    }
 
     text.render();
 }
 
-void Button::handleEvents(SDL_Event* event) {
-    switch(event->type) {
+void Button::handleEvents(SDL_Event* event)
+{
+    switch(event->type)
+    {
     case SDL_MOUSEBUTTONDOWN:
         active = true;
         break;
-    case SDL_MOUSEBUTTONUP: {
-        if(action) (game->*action)();
+    case SDL_MOUSEBUTTONUP:
+    {
+        if(action)
+        {
+            (game->*action)();
+        }
         active = false;
         break;
     }
