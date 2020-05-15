@@ -20,7 +20,7 @@ Player::Player(Color _color)
 }
 
 bool Player::init(SDL_Renderer* renderer) {
-    std::string folder = (color == WHITE ? "./assets/white/" : "./assets/black/");
+    std::string folder = (color == WHITE ? "./assets/textures/white/" : "./assets/textures/black/");
 
     size_t step = 2;
     for(size_t i = 0; i < figures.size(); ++i) {

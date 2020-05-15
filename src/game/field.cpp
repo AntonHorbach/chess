@@ -31,10 +31,10 @@ void Field::resetSquares() {
 }
 
 bool Field::init(SDL_Renderer* renderer) {
-    white_square = TextureManager::loadTexture(renderer, "./assets/white_square.png");
-    black_square = TextureManager::loadTexture(renderer, "./assets/black_square.png");
-    move_square = TextureManager::loadTexture(renderer, "./assets/move_square.png");
-    attack_square = TextureManager::loadTexture(renderer, "./assets/attack_square.png");
+    white_square = TextureManager::loadTexture(renderer, "./assets/textures/white_square.png");
+    black_square = TextureManager::loadTexture(renderer, "./assets/textures/black_square.png");
+    move_square = TextureManager::loadTexture(renderer, "./assets/textures/move_square.png");
+    attack_square = TextureManager::loadTexture(renderer, "./assets/textures/attack_square.png");
 
     if(white_square == nullptr || black_square == nullptr || move_square == nullptr
         || attack_square == nullptr)

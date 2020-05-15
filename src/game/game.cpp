@@ -48,7 +48,7 @@ bool Game::init(const char* title, int x, int y, int width, int height, bool ful
 }
 
 bool Game::initMenu() {
-    if(!menu.init(renderer, 480, 0, 160, 480, "./assets/menu.png")) {
+    if(!menu.init(renderer, 480, 0, 160, 480, "./assets/textures/menu.png")) {
         return false;
     }
 
@@ -66,7 +66,8 @@ bool Game::initMenu() {
     button.init(this, renderer, "Exit", 18, &Game::exit);
     menu.pushButton(std::move(button));
 
-    menu.setButtonsTextures("./assets/buttonON.png", "./assets/button.png");
+    menu.setButtonsTextures("./assets/textures/buttonON.png",
+            "./assets/textures/button.png");
 
     return true;
 }

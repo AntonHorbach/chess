@@ -33,7 +33,7 @@ std::shared_ptr<SDL_Texture> TextureManager::loadTextTexture(SDL_Renderer* rende
         return textures[key];
     }
 
-    TTF_Font* font = TTF_OpenFont("./fonts/Thinxssk.ttf", font_size);
+    TTF_Font* font = TTF_OpenFont("./assets/fonts/Thinxssk.ttf", font_size);
     SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
