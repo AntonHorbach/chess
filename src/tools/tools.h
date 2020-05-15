@@ -9,37 +9,37 @@ template <typename T1, typename T2>
 std::pair<T1, T2>& operator+=(std::pair<T1, T2>& left, const std::pair<T1, T2>& right);
 
 template <typename T1, typename T2>
-std::pair<T1, T2>& operator+(std::pair<T1, T2> left, const std::pair<T1, T2>& right);
+std::pair<T1, T2> operator+(const std::pair<T1, T2>& left, const std::pair<T1, T2>& right);
 
 template <typename T>
 std::vector<T>& operator-=(std::vector<T>& vec, const T& value);
 
 template <typename T>
-std::vector<T>& operator-(std::vector<T> vec, const T& value);
+std::vector<T> operator-(const std::vector<T>& vec, const T& value);
 
 template <typename T>
 std::vector<T>& operator+=(std::vector<T>& vec, const T& value);
 
 template <typename T>
-std::vector<T>& operator+(std::vector<T> vec, const T& value);
+std::vector<T> operator+(const std::vector<T>& vec, const T& value);
 
 template <typename T>
 std::vector<T>& operator-=(std::vector<T>& left, const std::vector<T>& right);
 
 template <typename T>
-std::vector<T>& operator-(std::vector<T> left, const std::vector<T>& right);
+std::vector<T> operator-(const std::vector<T>& left, const std::vector<T>& right);
 
 template <typename T>
 std::vector<T>& operator+=(std::vector<T>& left, const std::vector<T>& right);
 
 template <typename T>
-std::vector<T>& operator+(std::vector<T> left, const std::vector<T>& right);
+std::vector<T> operator+(const std::vector<T>& left, const std::vector<T>& right);
 
 template <typename T1, typename T2>
 std::pair<T1, T2>& operator-=(std::pair<T1, T2>& left, const std::pair<T1, T2>& right);
 
 template <typename T1, typename T2>
-std::pair<T1, T2>& operator-(std::pair<T1, T2> left, const std::pair<T1, T2>& right);
+std::pair<T1, T2> operator-(const std::pair<T1, T2>& left, const std::pair<T1, T2>& right);
 
 namespace tools {
     std::vector<std::pair<int, int>> generateLongStraightMoves(const size_t MAX = 8);
@@ -79,9 +79,12 @@ std::pair<T1, T2>& operator+=(std::pair<T1, T2>& left, const std::pair<T1, T2>& 
 }
 
 template <typename T1, typename T2>
-std::pair<T1, T2>& operator+(std::pair<T1, T2> left, const std::pair<T1, T2>& right)
+std::pair<T1, T2> operator+(const std::pair<T1, T2>& left, const std::pair<T1, T2>& right)
 {
-    return left += right;
+    auto res = left;
+    res += right;
+
+    return res;
 }
 
 template <typename T>
@@ -96,9 +99,12 @@ std::vector<T>& operator-=(std::vector<T>& vec, const T& value)
 }
 
 template <typename T>
-std::vector<T>& operator-(std::vector<T> vec, const T& value)
+std::vector<T> operator-(const std::vector<T>& vec, const T& value)
 {
-    return vec -= value;
+    auto res = vec;
+    res -= value;
+
+    return res;
 }
 
 template <typename T>
@@ -113,9 +119,12 @@ std::vector<T>& operator+=(std::vector<T>& vec, const T& value)
 }
 
 template <typename T>
-std::vector<T>& operator+(std::vector<T> vec, const T& value)
+std::vector<T> operator+(const std::vector<T>& vec, const T& value)
 {
-    return vec += value;
+    auto res = vec;
+    res += value;
+
+    return res;
 }
 
 template <typename T>
@@ -137,9 +146,12 @@ std::vector<T>& operator-=(std::vector<T>& left, const std::vector<T>& right)
 }
 
 template <typename T>
-std::vector<T>& operator-(std::vector<T> left, const std::vector<T>& right)
+std::vector<T> operator-(const std::vector<T>& left, const std::vector<T>& right)
 {
-    return left -= right;
+    auto res = left;
+    res -= right;
+
+    return res;
 }
 
 template <typename T>
@@ -154,9 +166,12 @@ std::vector<T>& operator+=(std::vector<T>& left, const std::vector<T>& right)
 }
 
 template <typename T>
-std::vector<T>& operator+(std::vector<T> left, const std::vector<T>& right)
+std::vector<T> operator+(const std::vector<T>& left, const std::vector<T>& right)
 {
-    return left += right;
+    auto res = left;
+    res += right;
+
+    return res;
 }
 
 template <typename T1, typename T2>
@@ -169,9 +184,12 @@ std::pair<T1, T2>& operator-=(std::pair<T1, T2>& left, const std::pair<T1, T2>& 
 }
 
 template <typename T1, typename T2>
-std::pair<T1, T2>& operator-(std::pair<T1, T2> left, const std::pair<T1, T2>& right)
+std::pair<T1, T2> operator-(const std::pair<T1, T2>& left, const std::pair<T1, T2>& right)
 {
-    return left -= right;
+    auto res = left;
+    res -= right;
+
+    return res;
 }
 
 namespace tools {
