@@ -3,9 +3,6 @@ project(chess VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include(CTest)
-enable_testing()
-
 add_executable(chess src/game/main.cpp src/game/game.cpp src/game/field.cpp
                 src/game/TextureManager.cpp src/game/figure.cpp
                 src/tools/vectorTools.cpp
@@ -16,7 +13,3 @@ add_executable(chess src/game/main.cpp src/game/game.cpp src/game/field.cpp
                 src/game/menu/text.cpp)
                 
 target_link_libraries(chess SDL2 SDL2_image SDL2_ttf)
-
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
