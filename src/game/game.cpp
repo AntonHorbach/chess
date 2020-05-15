@@ -160,7 +160,6 @@ bool Game::checkmate()
 
     for(const Figure& threat : direct_threats)
     {
-        bool flag = false;
         for(const Figure& figure : another_player->getFigures())
         {
             if(figure.isDead())
@@ -182,10 +181,6 @@ bool Game::checkmate()
                 continue;
             }
 
-            if(figure.getType() != FT::PAWN_7)
-            {
-                continue;
-            }
             if(tools::findMatches(threat.getX(),
                                   threat.getY(),
                                   enemy_king->getX(),
