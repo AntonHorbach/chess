@@ -7,14 +7,14 @@ std::shared_ptr<SDL_Texture> TextureManager::make_shared_texture(SDL_Texture* te
 }
 
 std::shared_ptr<SDL_Texture> TextureManager::loadTexture(SDL_Renderer* renderer,
-                                                        const char* path_to_sprite)
+                                                        const std::string& path_to_sprite)
 {
     if(textures.find(path_to_sprite) != std::end(textures))
     {
         return textures[path_to_sprite];
     }
 
-    SDL_Surface* surface = IMG_Load(path_to_sprite);
+    SDL_Surface* surface = IMG_Load(path_to_sprite.c_str());
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
@@ -23,7 +23,7 @@ std::shared_ptr<SDL_Texture> TextureManager::loadTexture(SDL_Renderer* renderer,
     return textures[path_to_sprite];
 }
 
-std::shared_ptr<SDL_Texture> TextureManager::loadTextTexture(SDL_Renderer* renderer, const char* text,
+std::shared_ptr<SDL_Texture> TextureManager::loadTextTexture(SDL_Renderer* renderer, const std::string& text,
                                                         size_t font_size, SDL_Color color)
 {
     std::string key = std::string(text) + std::to_string(font_size) + std::to_string(color.a)
@@ -34,7 +34,7 @@ std::shared_ptr<SDL_Texture> TextureManager::loadTextTexture(SDL_Renderer* rende
     }
 
     TTF_Font* font = TTF_OpenFont("./fonts/Thinxssk.ttf", font_size);
-    SDL_Surface* surface = TTF_RenderText_Solid(font, text, color);
+    SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), color);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
 
